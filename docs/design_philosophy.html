@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LIL is a language</title>
+    <meta charset="UTF8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/foundation.css" />
+    <style>
+        #content
+        {
+            padding-top: 40px;
+        }
+        
+        #content > article
+        {
+            max-width: 1200px;
+            padding-left: 50px;
+            padding-right: 50px;
+            margin: 0 auto 30px;
+        }
+        
+        #design_philosophy li
+        {
+            margin-bottom: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>
+                <a href="index.html">
+                    <span class="title">LIL is a Language</span>
+                    <span class="subtitle">Make games, nicely</span>
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Documentation</a></li>
+                    <li><a href="../index.html#donate">Donate</a></li>
+                    <li><a href="../index.html#contribute">Contribute</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        <div>
+            <section id="sidebar">
+                <nav><ul>
+                    <nav><ul>
+                        <li><a href="obj_container.html">@container</a></li>
+                        <li><a href="obj_image.html">@image</a></li>
+                        <li><a href="obj_font.html">@font</a></li>
+                        <li><a href="obj_margin.html">@margin</a></li>
+                        <li><a href="obj_rgb.html">@rgb</a></li>
+                        <li><a href="obj_linearGradient.html">@linearGradient</a></li>
+                        <li><a href="obj_radialGradient.html">@radialGradient</a></li>
+                        <li><a href="obj_colorStop.html">@colorStop</a></li>
+                        <li><a href="obj_border.html">@border</a></li>
+                        <li><a href="obj_string.html">@string</a></li>
+                        <li><a href="obj_array.html">@array</a></li>
+                        <li><a href="fn_print.html">print</a></li>
+                        <li><a href="obj_drawable.html">@drawable</a></li>
+                        <li><a href="design_philosophy.html">Design philosophy</a></li>
+                    </ul></nav>
+                </ul></nav>
+            </section>
+            <section id="doc">
+                <article id="intro">
+                    <h2>Design philosophy</h2>
+                    <p>This page describes the rules by which the design of the LIL language is guided. Keep in mind that the rules should be intepreted by its intentions (the spirit of the law) and not by the exact wording. They are just guidelines and, if necessary, can be broken.</p>
+                    <p>If you have suggestions for something that we should add here, do not hesistate to get in touch.</p>
+                </article>
+                <article id="design_philosophy">
+                    <h3>When designing the syntax of LIL, keep in mind the following:</h3>
+                    <ol>
+                        <li>Only use abbreviations if it is immediately clear what they mean, i.e. don't use cryptic ones.</li>
+                        <li>Whitespace should never be used as syntax.</li>
+                        <li>Be copy & paste friendly, e.g. allow extra separators at the end of a list.</li>
+                        <li>Keep names as short as possible, without being cryptic. If possible, use only one word.</li>
+                        <li>Use camelCase when joining two words in an identifier, use UPPER_CASE for built in operators.</li>
+                        <li>Do NOT worry about wether braces are on the same line or on a new one.</li>
+                    </ol>
+                </article>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

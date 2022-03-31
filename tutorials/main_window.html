@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LIL is a language - Documentation</title>
+    <meta charset="UTF8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/foundation.css" />
+    <style>
+        #content
+        {
+            padding-top: 30px;
+        }
+        #content > article
+        {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>
+                <a href="../index.html">
+                    <span class="title">LIL is a Language</span>
+                    <span class="subtitle">Make games, nicely</span>
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="../docs/index.html">Documentation</a></li>
+                    <li><a href="../index.html#donate">Donate</a></li>
+                    <li><a href="../index.html#contribute">Contribute</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        <article id="intro">
+            <h2>The main window</h2>
+            <p>The topmost element is called root, and its width and height define the size of the window on those platforms
+                where it is supported, like Mac, Windows or Linux. On other platforms like iOS or Android the size of the window is defined by the operating system and these values will be ignored. The background color fills the entire screen with the
+                given color.</p>
+            <code>
+@root {
+    width: 800.0;
+    height: 600.0;
+    background: #00C53A;
+}
+            </code>
+        </article>
+        <article id="next_tutorial">
+            <nav>
+                <a href="main_menu.html">Next tutorial: customizing the main menu</a>
+            </nav>
+        </article>
+    </div>
+</body>
+</html>

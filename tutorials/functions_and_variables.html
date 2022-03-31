@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LIL is a language - Documentation</title>
+    <meta charset="UTF8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/foundation.css" />
+    <style>
+        #content
+        {
+            padding-top: 30px;
+        }
+        #content > article
+        {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>
+                <a href="../index.html">
+                    <span class="title">LIL is a Language</span>
+                    <span class="subtitle">Make games, nicely</span>
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="../docs/index.html">Documentation</a></li>
+                    <li><a href="../index.html#donate">Donate</a></li>
+                    <li><a href="../index.html#contribute">Contribute</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        <article id="intro">
+            <h2>Functions and variables</h2>
+            <p>Let's build something slightly more complicated. We are going to create and call our first function. Create a new file called "fns.lil".</p>
+            <p>Inside, add the following code:</p>
+            <code>
+<span class="keyword">fn</span> <span class="var_name">sayHello</span> {
+    <span class="var_name">print</span> <span class="string">"Hello world"</span>;
+}
+
+<span class="var_name">sayHello</span>();
+            </code>
+            <p>The last line in this example is what's known as <em>top level code</em>. The compiler will put these into a function which gets called in the initialization phase of your app.</p>
+            <p>Long story short, if we run this it will print "Hello world" to the console.</p>
+        </article>
+        <article id="variables">
+            <h3>Variables</h3>
+            <p>Variables are like boxes which contain information. You can specify the type of the variable, which means what <em>kind</em> of information can be stored there. You also give it a name, so that other parts of the code can refer to it. We can change our code a bit:</p>
+            <code>
+<span class="keyword">fn</span> <span class="var_name">sayHello</span> {
+    <span class="keyword">var</span> <span class="var_name">helloStr</span>: <span class="string">"Hello world"</span>;
+    <span class="var_name">print</span> <span class="var_name">helloStr</span>;
+}
+
+<span class="var_name">sayHello</span>();
+
+</code>
+            <p>Again, if we run this it will print "Hello world" to the console.</p>
+        </article>
+        <article id="argments">
+            <h3>Arguments</h3>
+            <p>Now, we don't have to alway use strings, so let's get a bit mathy:</p>
+            <code>
+<span class="keyword">fn</span> <span class="var_name">printNums</span> ( <span class="keyword">var</span>.<span class="type">i64</span> <span class="var_name">foo</span>; <span class="keyword">var</span>.<span class="type">i64</span> <span class="var_name">bar</span> ) {
+    <span class="var_name">print</span> <span class="var_name">foo</span> + <span class="var_name">bar</span>;
+}
+
+<span class="var_name">printNums</span>(<span class="number">100</span>, <span class="number">333</span>);
+
+</code>
+            <p>The output in this case will be "433". As you can see, we used variables as parameters of the function, and we pass the two values that, inside of the function, will be summed together and then printed. In this case, we specified the type of the variables, which you should do most of the time, except where it is obvious what type it is going to be, such as in the previous examples.</p>
+        </article>
+        <article id="one_arg_call">
+            <h3>One argument call</h3>
+            <p>There is a nice syntax for function calls that only have one argument. Instead of using parentheses, you simply write a space followed by the argument. Like so:</p>
+            <code>
+<span class="keyword">fn</span> <span class="var_name">myTest</span> ( <span class="keyword">var</span>.<span class="type">f64</span> <span class="var_name">foo</span> ) {
+    <span class="var_name">print</span> <span class="var_name">foo</span>;
+}
+
+<span class="var_name">myTest</span> <span class="number">0.314159265359</span>;
+            </code>
+        </article>
+        <article id="next_tutorial">
+            <nav>
+                <a href="rules_and_properties.html">Next tutorial: rules and properties</a>
+            </nav>
+        </article>
+    </div>
+</body>
+</html>

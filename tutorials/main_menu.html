@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LIL is a language - Documentation</title>
+    <meta charset="UTF8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/foundation.css" />
+    <style>
+        #content
+        {
+            padding-top: 30px;
+        }
+        #content > article
+        {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>
+                <a href="../index.html">
+                    <span class="title">LIL is a Language</span>
+                    <span class="subtitle">Make games, nicely</span>
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="../docs/index.html">Documentation</a></li>
+                    <li><a href="../index.html#donate">Donate</a></li>
+                    <li><a href="../index.html#contribute">Contribute</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        <article id="intro">
+            <h2>The main menu</h2>
+            <p>Next step, we define the elements of the main menu of our application. Again, in operating systems where this doesn&#x27;t exist, like on iOS, it will be ignored.</p>
+            <code>
+fn newGame {
+    print "Starting new game...";
+    //etc
+}
+                
+@mainMenu {
+    #new @menu game {
+        label: "Game";
+
+        #new @menuItem new {
+            label: "New Game";
+            shortcut: "n";
+            action: newGame;
+        }
+    }
+}
+            </code>
+        </article>
+        
+        <article id="mac">
+            <h2>Mac specific menu</h2>
+            <p>On the Mac platform, the UI convention is to have one first menu that is called like the app itself. It is created automatically and you can add items to it by using "app" in the selector.</p>
+            <p>Usually, main menu files are put into separate files, one per platform, using the @OS_MAC suffix in this example.</p>
+            <code>
+//file: main.lil
+#needs "main_menu.lil";
+
+//etc
+            </code>
+            <code>
+//file: main_menu@OS_MAC.lil
+@mainMenu {
+    app {
+        #new @menuItem about {
+            label: "About";
+            action: showAboutWindow; //suppose this exists
+        }
+    }
+}
+            </code>
+            <code>
+//file: main_menu@OS_WINDOWS.lil
+@mainMenu {
+    #new @menu file {
+        label: "File";
+
+        #new @menuItem about {
+            label: "About";
+            action: showAboutWindow; //suppose this exists
+        }
+    }
+}
+            </code>
+        </article>
+    </div>
+</body>
+</html>

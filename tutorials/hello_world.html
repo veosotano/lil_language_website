@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LIL is a language - Documentation</title>
+    <meta charset="UTF8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/foundation.css" />
+    <style>
+        #content
+        {
+            padding-top: 30px;
+        }
+        #content > article
+        {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        #content > article ol
+        {
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>
+                <a href="../index.html">
+                    <span class="title">LIL is a Language</span>
+                    <span class="subtitle">Make games, nicely</span>
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="../docs/index.html">Documentation</a></li>
+                    <li><a href="../index.html#donate">Donate</a></li>
+                    <li><a href="../index.html#contribute">Contribute</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        <article id="intro">
+            <h2>Hello world</h2>
+            <p>This is easy. Behold:</p>
+            <ol>
+                <li>With your favorite plain text editor, create a new file called hello.lil</li>
+                <li>Add the following to the file:<br/>
+                    <code>
+<span class="function">print</span> <span class="string">"Hello world"</span>
+                    </code>
+                </li>
+                
+                <li>Open a Terminal window, navigate to the folder where the file is, and type the following:</li>
+                <li>
+                    <span>lil hello.lil --run</span>
+                    <p>The output should be: Hello world</p>
+                </li>
+                <li>
+                    If the executable can't be found, add its containing folder to your <a href="https://www.google.com/search?q=path+variable+unix" target="_blank">PATH</a> or write the full path:
+                    <p>/full/path/to/lil hello.lil --run</p>
+                </li>
+            </ol>
+        </article>
+        <article id="next_tutorial">
+            <nav>
+                <a href="functions_and_variables.html">Next tutorial: functions and variables</a>
+            </nav>
+        </article>
+    </div>
+</body>
+</html>

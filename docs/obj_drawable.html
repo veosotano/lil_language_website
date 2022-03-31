@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LIL is a language - Documentation</title>
+    <meta charset="UTF8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/foundation.css" />
+</head>
+<body>
+    <header>
+        <div>
+            <h1>
+                <a href="../index.html">
+                    <span class="title">LIL is a Language</span>
+                    <span class="subtitle">Make games, nicely</span>
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Documentation</a></li>
+                    <li><a href="../index.html#donate">Donate</a></li>
+                    <li><a href="../index.html#contribute">Contribute</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        <div>
+            <section id="sidebar">
+                <nav><ul>
+                    <li><a href="obj_container.html">@container</a></li>
+                    <li><a href="obj_image.html">@image</a></li>
+                    <li><a href="obj_font.html">@font</a></li>
+                    <li><a href="obj_margin.html">@margin</a></li>
+                    <li><a href="obj_rgb.html">@rgb</a></li>
+                    <li><a href="obj_linearGradient.html">@linearGradient</a></li>
+                    <li><a href="obj_radialGradient.html">@radialGradient</a></li>
+                    <li><a href="obj_colorStop.html">@colorStop</a></li>
+                    <li><a href="obj_border.html">@border</a></li>
+                    <li><a href="obj_string.html">@string</a></li>
+                    <li><a href="obj_array.html">@array</a></li>
+                    <li><a href="fn_print.html">print</a></li>
+                    <li><a href="obj_drawable.html">@drawable</a></li>
+                    <li><a href="design_philosophy.html">Design philosophy</a></li>
+                </ul></nav>
+            </section>
+            <section id="doc">
+                <article class="intro">
+                    <h2>@drawable</h2>
+                    <p>This is an abstract class that is shared by any object that can be drawn on the screen.</p>
+                    <p>It is implemented as a class snippet that needs to be pasted.
+                </article>
+                <article class="example">
+                    <h3>Example code:</h3>
+                    <code>
+class @myClass {
+    #paste @drawable;
+    //etc
+};
+var.@myClass myObj: @{ name: "myDrawable"; };
+myObj.x: 100.0;
+myObj.y: 30.5;
+                    </code>
+                </article>
+                <article class="variables">
+                    <h3>Member variables</h3>
+                    <ul>
+                        <li>
+                            <h4>sel</h4>
+                            <p>Type: var.@selectable</p>
+                            <p>Default value: @selectable { }</p>
+                            <p>Expanded: yes</p>
+                        </li>
+                        <li>
+                            <h4>position</h4>
+                            <p>Type: var.@vec3</p>
+                            <p>Default value: @vec3 { x: 0.0; y: 0.0; z: 0.0; }</p>
+                            <p>Expanded: yes</p>
+                        </li>
+                        <li>
+                            <h4>size</h4>
+                            <p>Type: var.@size</p>
+                            <p>Default value: @size { width: 0.0; height: 0.0 }</p>
+                            <p>Expanded: yes</p>
+                        </li>
+                        <li>
+                            <h4>transform</h4>
+                            <p>Type: var.@matrix3x3</p>
+                            <p>Default value: @matrix3x3 { a1: 1.0; a2: 0.0; a3: 0.0; b1: 0.0; b2: 1.0; b3: 0.0; c1: 0.0; c2: 0.0; c3: 1.0; }</p>
+                        </li>
+                    </ul>
+                </article>
+                <article class="related">
+                    <h3>Related pages:</h3>
+                    <ul>
+                        <li><a href="obj_container.html">@container</a></li>
+                        <li><a href="obj_image.html">@image</a></li>
+                        <li><a href="obj_font.html">@font</a></li>
+                        <li><a href="obj_rgb.html">@rgb</a></li>
+                    </ul>
+                </article>
+            </section>
+        </div>
+    </div>
+</body>
+</html>

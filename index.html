@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LIL is a language</title>
+    <meta charset="UTF8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <link rel="stylesheet" href="css/foundation.css?v=1" />
+    <style>
+        #content
+        {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        article {
+            padding-bottom: 30px;
+        }
+        
+        #intro > .summary
+        {
+            padding: 0 0 0 20px;
+            position: relative;
+        }
+        
+        #intro > .summary > p
+        {
+            font-size: 0.8em;
+        }
+        
+        #intro > .summary .strikethrough
+        {
+            text-decoration: line-through;
+        }
+        
+        #intro > .summary .coming_soon
+        {
+            display: block;
+            position: relative;
+            margin-top: 10px;
+            margin-left: 180px;
+        }
+        #intro > .summary .coming_soon::before
+        {
+            content: "";
+            display: block;
+            width: 39px;
+            height: 19px;
+            background-image: url("../img/coming_soon_arrow.png");
+            background-repeat: no-repeat;
+            position: absolute;
+            left: -45px;
+            top: -5px;
+        }
+        
+        #intro > .download_button
+        {
+            padding: 0 40px 0 40px;
+            text-align: center;
+        }
+        
+        #intro > .download_button h2
+        {
+            font-size: 2em;
+            padding-bottom: 20px;
+        }
+        
+        #intro > .download_button a
+        {
+            display: block;
+            width: 280px;
+            margin: 0 auto;
+            text-decoration: none;
+            position: relative;
+            border: 1px solid #C2740B;
+            border-radius: 14px;
+        }
+        
+        #intro > .download_button a > .wrapper
+        {
+            display: block;
+            background: #FFB000;
+            background: linear-gradient(180deg, rgba(255,176,0,1) 26%, rgba(255,201,79,1) 51%, rgba(255,213,120,1) 51.1%, rgba(255,176,0,1) 100%);
+            padding: 20px 10px 20px 60px;
+            border: 1px solid #FFFFC2;
+            border-radius: 14px;
+        }
+        #intro > .download_button a > .wrapper::before
+        {
+            content: "";
+            display: block;
+            width: 68px;
+            height: 60px;
+            background-image: url("../img/download_arrow.png");
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 10px;
+            top: 19px;
+        }
+        
+        #intro > .download_button a:hover
+        {
+            color: black;
+            text-decoration: underline;
+        }
+        
+        #intro > .download_button a:hover > .wrapper
+        {
+            background: linear-gradient(180deg, rgba(255,196,20,1) 26%, rgba(255,231,109,1) 51%, rgba(255,243,150,1) 51.1%, rgba(255,196,20,1) 100%);
+        }
+        
+        #intro > .download_button a > .wrapper > span
+        {
+            display: block;
+        }
+        
+        #intro > .download_button a > .wrapper > span.download
+        {
+            font-size: 1.2em;
+            font-weight: bold;
+            padding-bottom: 3px;
+        }
+        #intro > .download_button a > .wrapper > span.version
+        {
+            font-size: 0.8em;
+        }
+        
+        #intro > .features
+        {
+            padding: 45px 0 30px 40px;
+            font-size: 0.8em;
+        }
+
+        #intro > ul
+        {
+            list-style: disc;
+        }
+
+        #intro > ul > li
+        {
+            padding: 0 30px 15px 0;
+            margin: 0;
+        }
+        
+        #intro > ul::after
+        {
+            content: "";
+            display: block;
+            clear: both;
+        }
+        
+        #testimonials
+        {
+            padding-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        #testimonials > div
+        {
+            padding-bottom: 10px;
+        }
+        
+        #testimonials > div > p
+        {
+            padding: 0;
+        }
+
+        #testimonials > div > .quote
+        {
+            font-style: italic;
+            padding-bottom: 0;
+        }
+        #testimonials > div > .author
+        {
+            font-weight: bold;
+        }
+        
+        #documentation_bar
+        {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1010px;
+            margin: 0 auto 20px;
+            padding: 20px 40px;
+            background: rgba(235,240,250,1);
+            border-radius: 60px;
+            justify-content: space-between;
+            box-shadow: 0 2px 0 rgba(205, 210, 220, 1);
+        }
+
+        #documentation_bar > h3
+        {
+            padding-right: 5%;
+            padding-bottom: 10px;
+            flex-basis: 45%;
+        }        
+        #documentation_bar > .search
+        {
+            display: flex;
+            position: relative;
+            min-height: 40px;
+            flex-basis: 50%;
+        }
+        
+        #documentation_bar > .search > h4
+        {
+            margin-right: 10px;
+            line-height: 28px;
+        }
+        
+        #documentation_bar > .search input
+        {
+            width: auto;
+            padding: 10px 10%;
+            border-radius: 20px;
+            border-color: rgba(205, 210, 220, 1);
+            border-width: 1px;
+            outline: none;
+            position: absolute;
+            top: -6px;
+        }
+        
+        #documentation_bar > nav
+        {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+                
+        #documentation_bar > nav > a
+        {
+            font-weight: bold;
+        }
+
+        .nav_list > div
+        {
+            font-size: 0.9em;
+        }
+        
+        .nav_list > h3
+        {
+            padding: 30px 0 20px 0;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+
+        .nav_list > div > section
+        {
+            padding-bottom: 15px;
+        }
+        
+        .nav_list > div > section > h4
+        {
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .nav_list > div > section > nav
+        {
+            padding-right: 20px;
+        }
+        
+        .nav_list > div > section > nav > a
+        {
+            display: block;
+            margin-bottom: 5px;
+            text-decoration: none;
+        }
+        .nav_list .see_all
+        {
+            display: block;
+            color: black;
+            padding-top: 30px;
+        }
+        
+        #specification > h3
+        {
+            padding-top: 30px;
+            font-size: 2em;
+        }
+        
+        #donate > div
+        {
+            width: 300px;
+            
+        }
+        
+        #donate > div > a
+        {
+            display: block;
+            background: rgba(235,240,250,1);
+            background: linear-gradient(180deg, rgba(248,250,255,1) 0%, rgba(253,253,254,1) 49%, rgba(249,250,253,1) 50%, rgba(235,240,250,1) 100%);
+            text-align: center;
+            border-radius: 5px;
+            color: rgba(85,90,100,1);
+            font-weight: bold;
+            text-decoration: none;
+            border: 1px solid rgba(205,210,220,1);
+            -webkit-box-shadow:
+                0px 0px 8px 3px rgba(0,0,0,0.05),
+                inset 0px 12px 0px 0px rgba(255,255,255,0.1),
+                inset 1px 1px 8px 1px rgba(230,230,255,0.7);
+            -moz-box-shadow:
+                0px 0px 8px 3px rgba(0,0,0,0.05),
+                inset 0px 12px 0px 0px rgba(255,255,255,0.1),
+                inset 1px 1px 8px 1px rgba(230,230,255,0.7);
+        }
+        
+        #donate > div > a > span
+        {
+            display: block;
+            padding: 20px;
+            border-radius: 4px;
+            border: 1px solid white;
+            text-shadow: 0 2px 0 white;
+        }
+        
+        #donate > div > a:hover
+        {
+            background: rgba(45,50,60,1);
+            border-color: rgba(125,130,140,1);
+            color: white;
+        }
+        #donate > div > a:hover > span
+        {
+            border-color: rgba(255,255,255,0.3);
+            text-shadow: 0 -2px 0 black;
+        }
+        @media (min-width: 445px) {
+            #documentation_bar > .search > form > input
+            {
+                width: 50%;
+            }
+        }
+
+        @media (min-width: 600px) {
+            article {
+                padding-bottom: 60px;
+            }
+            
+            article:first-child
+            {
+                padding-bottom: 0;
+            }
+            #intro > ul > li
+            {
+                width: 45%;
+                float: left;
+                padding-right: 5%;
+            }
+            #documentation_bar > nav
+            {
+                width: 80%;
+            }
+            .nav_list > div
+            {
+                display: flex;
+            }
+            #tutorials .beginner
+            {
+                width: 30%;
+            }
+            #tutorials .intermediate
+            {
+                width: 30%;
+            }
+            #tutorials .advanced
+            {
+                width: 40%;
+            }
+        
+            #api .functions
+            {
+                width: 25%;
+            }
+            #api .classes
+            {
+                width: 25%;
+            }
+            #api .data_types
+            {
+                width: 25%;
+            }
+            #api .instruction
+            {
+                width: 25%;
+            }
+            
+        }
+        
+        @media (min-width: 760px) {
+            #intro
+            {
+                display: flex;
+                padding-bottom: 40px;
+            }
+
+            #intro > .summary
+            {
+                padding-top: 50px;
+                width: 34%;
+            }
+            #intro > .summary .coming_soon
+            {
+                position: absolute;
+                right: 20px;
+                bottom: 55px;
+                margin: 0;
+            }
+            #intro > .download_button
+            {
+                width: 34%;
+            }
+            #intro > .features
+            {
+                width: 32%;
+            }
+            #intro > ul > li
+            {
+                width: auto;
+                padding: 0 0 15px 0;
+                margin: 0;
+                float: none;
+            }
+            #testimonials
+            {
+                display: flex;
+            }
+            #testimonials > div
+            {
+                width: 21%;
+                padding-right: 2%;
+                text-align: right;
+            }
+        
+            #testimonials > div:last-child
+            {
+                width: 25%;
+                padding-right: 0;
+            }
+        }
+
+        @media (min-width: 800px) {
+            section
+            {
+                padding-bottom: 50px;
+            }
+            section:last-child
+            {
+                padding-bottom: 0;
+            }
+            
+            article {
+                max-width: 1010px;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 60px;
+                padding-right: 60px;
+            }
+            #intro > .download_button
+            {
+                padding-left: 20px;
+            }
+            #intro > .download_button a
+            {
+                width: 250px;
+            }
+            #documentation_bar
+            {
+                flex-wrap: nowrap;
+                max-width: 1010px;
+                padding: 40px 40px 30px;
+                margin: 0 auto 20px;
+                justify-content: space-between;
+            }
+        
+            #documentation_bar > h3
+            {
+                flex-basis: 20%;
+                font-size: 1.1em;
+            }
+        
+            #documentation_bar > .search
+            {
+                flex-basis: 30%;
+                display: flex;
+            }
+
+            #documentation_bar > nav
+            {
+                width: 40%;
+            }
+        }
+        
+        @media (min-width: 900px) {
+            #intro > .download_button a
+            {
+                width: 280px;
+            }
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>
+                <a href="index.html">
+                    <span class="title">LIL is a Language</span>
+                    <span class="subtitle">Make games, nicely</span>
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="docs/index.html">Documentation</a></li>
+                    <li><a href="#donate">Donate</a></li>
+                    <li><a href="#contribute">Contribute</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        <article id="intro">
+            <div class="summary">
+                <h3>A powerful new language for native apps and games</h3>
+                <p>on MacOS, <span class="strikethrough">Windows</span>, <span class="strikethrough">Linux</span> and <span class="strikethrough">iOS</span> <span class="coming_soon">Coming soon!</span></p>
+            </div>
+            <div class="download_button">
+                <h2>try it out:</h2>
+                <div class="button">
+                    <a href="/downloads/lil_v0.0.6_alpha.zip">
+                        <span class="wrapper">
+                            <span class="download">Download now</span>
+                            <span class="version">Version 0.0.6 alpha</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <ul class="features">
+                <li>Nice and clean syntax / API</li>
+                <li>Generates native machine code</li>
+                <li>Cross platform</li>
+                <li>Hw accelerated 2d/3d graphics engine</li>
+            </ul>
+        </article>
+        <article id="testimonials">
+            <div>
+                <p class="quote">&ldquo;LIL is really cool&rdquo;</span>
+                <p class="author">- Somebody</p>
+            </div>
+            <div>
+                <p class="quote">“I was scared at first but now I’m addicted”</p>
+                <p class="author">- anonymous</p>
+            </div>
+            <div>
+                <p class="quote">“I’m having a lot of fun coding in LIL”</p>
+                <p class="author">- Miro Keller</p>
+            </div>
+            <div>
+                <p class="quote">“Coming from web design, LIL feels instantly familiar”</p>
+                <p class="author">- VeoSotano</p>
+            </div>
+        </article>
+        <article id="documentation_bar">
+            <h3>Documentation</h3>
+            <div class="search">
+                <h4>Search:</h4>
+                <form id="search_docs" method="GET" action="https://google.com/search" target="_BLANK">
+                    <input type="text" name="q" />
+                </form>
+            </div>
+            <nav>
+                <a href="#tutorials">Tutorials</a>
+                <a href="#api">API</a>
+                <a href="#specification">Specification</a>
+            </nav>
+        </article>
+        <article id="tutorials" class="nav_list">
+            <h3>Tutorials</h3>
+            <div>
+                <section class="beginner">
+                    <h4>Set up &amp; beginner</h4>
+                    <nav>
+                        <a href="tutorials/download.html">Downloading and installing</a>
+                        <a href="tutorials/hello_world.html">Hello world program</a>
+                        <a href="tutorials/functions_and_variables.html">Functions and variables</a>
+                        <a href="tutorials/rules_and_properties.html">Rules and properties</a>
+                        <a href="tutorials/main_window.html">The main window</a>
+                        <a href="tutorials/main_menu.html">The main menu</a>
+                    </nav>
+                    <!-- <a class="see_all" href="docs/tutorials/index.html#beginner">See all</a> -->
+                </section>
+                <section class="intermediate">
+                    <h4>Intermediate topics</h4>
+                    <nav>
+                        <a href="#">Coming soon</a>
+                        <a href="#">Very soon indeed</a>
+                        <a href="#">Just gimme some time</a>
+                        <a href="#">Coming soon</a>
+                        <a href="#">And we'll all be friends</a>
+                        <!-- <a href="tutorials/performance.html">Optimization and performance</a>
+                        <a href="tutorials/game.html">Writing a small game</a>
+                        <a href="tutorials/rendering.html">The rendering pipeline</a>
+                        <a href="tutorials/pointers.html">Working with pointers</a>
+                        <a href="tutorials/rules_cascade.html">The rules and the cascade</a>
+                        <a href="tutorials/observing.html">The observer pattern</a> -->
+                    </nav>
+                    <!-- <a class="see_all" href="docs/tutorials/index.html#intermediate">See all</a> -->
+                </section>
+                <section class="advanced">
+                    <h4>Advanced topics</h4>
+                    <nav>
+                        <a href="#">Coming soon</a>
+                        <a href="#">Very soon indeed</a>
+                        <a href="#">Just gimme some time</a>
+                        <a href="#">Coming soon</a>
+                        <a href="#">And we'll all be friends</a>
+                        <a href="#">Again</a>
+                        <!-- <a href="tutorials/type_system.html">Getting the most out of the type system</a>
+                        <a href="tutorials/game2.html">Writing a more complex game</a>
+                        <a href="tutorials/shaders.html">Writing your own shaders</a>
+                        <a href="tutorials/rendering2.html">Customizing the rendering pipeline</a>
+                        <a href="tutorials/foreing_langs.html">Integrating LIL with other languages</a>
+                        <a href="tutorials/new_frontiers.html">New frontiers</a> -->
+                    </nav>
+                    <!-- <a class="see_all" href="docs/tutorials/index.html#advanced">See all</a> -->
+                </section>
+            </div>
+        </article>
+        
+        <article id="api" class="nav_list">
+            <h3>Application Programming Interface (API)</h3>
+            <div>
+                <section class="functions">
+                    <h4>Built in functions</h4>
+                    <nav>
+                        <a href="docs/fn_print.html">print</a>
+                        <a href="docs/fn_flag.html">flag</a>
+                        <a href="docs/fn_unflag.html">unflag</a>
+                        <a href="docs/fn_sel.html">sel</a>
+                        <a href="docs/fn_sizeOf.html">sizeOf</a>
+                        <a href="docs/fn_pointerTo.html">pointerTo</a>
+                        <a href="docs/fn_valueOf.html">valueOf</a>
+                        <a href="docs/fn_set.html">set</a>
+                    </nav>
+                    <a class="see_all" href="docs/functions/index.html">See all</a>
+                </section>
+                <section class="classes">
+                    <h4>Built in classes</h4>
+                    <nav>
+                        <a href="docs/@string.html">@string</a>
+                        <a href="docs/@array.html">@array</a>
+                        <a href="docs/@map.html">@map</a>
+                        <a href="docs/@box2d.html">@box2d</a>
+                        <a href="docs/@container.html">@container</a>
+                        <a href="docs/@image.html">@image</a>
+                        <a href="docs/@font.html">@font</a>
+                        <a href="docs/@rgb.html">@rgb</a>
+                    </nav>
+                    <a class="see_all" href="docs/classes/index.html">See all</a>
+                </section>
+                <section class="data_types">
+                    <h4>Data types</h4>
+                    <nav>
+                        <a href="docs/data_types.html#integers">Integers</a>
+                        <a href="docs/data_types.html#floats">Floats</a>
+                        <a href="docs/data_types.html#static_arrays">Static arrays</a>
+                        <a href="docs/data_types.html#c_strings">C Strings</a>
+                        <a href="docs/data_types.html#booleans">Booleans</a>
+                        <a href="docs/data_types.html#pointers">Pointers</a>
+                        <a href="docs/data_types.html#multiple_types">Multiple types</a>
+                        <a href="docs/data_types.html#vector_types">Vector types</a>
+                    </nav>
+                    <a class="see_all" href="docs/data_types.html">See all</a>
+                </section>
+                <section class="instructions">
+                    <h4>Instructions</h4>
+                    <nav>
+                        <a href="docs/instr_needs.html">#needs</a>
+                        <a href="docs/instr_import.html">#import</a>
+                        <a href="docs/instr_export.html">#export</a>
+                        <a href="docs/instr_configure.html">#configure</a>
+                        <a href="docs/instr_snippet.html">#snippet</a>
+                        <a href="docs/instr_paste.html">#paste</a>
+                        <a href="docs/instr_new.html">#new</a>
+                        <a href="docs/instr_expand.html">#expand</a>
+                    </nav>
+                    <a class="see_all" href="docs/functions/index.html">See all</a>
+                </section>
+            </div>
+        </article>
+        
+        <article id="specification">
+            <h3>Specification</h3>
+            <p>The specification is a document that describes the LIL programming language as thoroughly as possible. You can
+read it clicking the following link:</p>
+            <p><a href="https://github.com/veosotano/lil/blob/main/lilspec.md" target="_blank">click here to go to the latest version of the specification</a>
+        </article>
+        
+        <article id="code_example">
+            <h3>Example LIL code:</h3>
+            <code>
+<span class="instruction">#</span><span class="instruction">configure</span> <span class="punctuation">{</span>
+    <span class="property_name">name</span><span class="punctuation">:</span> <span class="string">"Adventurer"</span><span class="punctuation">;</span>
+    <span class="property_name">onUpdateFn</span><span class="punctuation">:</span> <span class="bool">true</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+
+<span class="instruction">#</span><span class="instruction">needs</span> <span class="string">"std/animation.lil"</span><span class="punctuation">;</span>
+<span class="instruction">#</span><span class="instruction">needs</span> <span class="string">"std/characterController2d.lil"</span><span class="punctuation">;</span>
+
+
+<span class="var_declaration">var</span> <span class="var_declaration">anim</span><span class="punctuation">:</span> <span class="object_definition">@</span><span class="object_definition">animationController</span> <span class="punctuation">{</span>
+    <span class="property_name">sprite</span><span class="punctuation">:</span> <span class="object_definition">@</span><span class="object_definition">sprite</span> <span class="punctuation">{</span> <span class="property_name">id</span><span class="punctuation">:</span> <span class="number_literal">1</span> <span class="punctuation">}</span><span class="punctuation">;</span>
+    <span class="property_name">sequences</span><span class="punctuation">:</span> <span class="punctuation">[</span>
+        <span class="comment">//idle</span>
+        <span class="object_definition">@</span><span class="object_definition">animationSequence</span> <span class="punctuation">{</span>
+            <span class="property_name">frames</span><span class="punctuation">:</span> <span class="punctuation">[</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">0</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">0</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">10</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">100</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">0</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">10</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">200</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">0</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">10</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">300</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">0</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">10</span> <span class="punctuation">}</span>
+            <span class="punctuation">]</span><span class="punctuation">;</span>
+            <span class="property_name">length</span><span class="punctuation">:</span> <span class="number_literal">4</span><span class="punctuation">;</span>
+        <span class="punctuation">}</span><span class="punctuation">,</span>
+        <span class="comment">//crouch</span>
+        <span class="object_definition">@</span><span class="object_definition">animationSequence</span> <span class="punctuation">{</span>
+            <span class="property_name">frames</span><span class="punctuation">:</span> <span class="punctuation">[</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">400</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">0</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">10</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">500</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">0</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">10</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">600</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">0</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">10</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">0</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">74</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">10</span> <span class="punctuation">}</span>
+            <span class="punctuation">]</span><span class="punctuation">;</span>
+            <span class="property_name">length</span><span class="punctuation">:</span> <span class="number_literal">4</span><span class="punctuation">;</span>
+        <span class="punctuation">}</span><span class="punctuation">,</span>
+        <span class="comment">//run</span>
+        <span class="object_definition">@</span><span class="object_definition">animationSequence</span> <span class="punctuation">{</span>
+            <span class="property_name">frames</span><span class="punctuation">:</span> <span class="punctuation">[</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">100</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">74</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">6</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">200</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">74</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">10</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">300</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">74</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">6</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">400</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">74</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">6</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">500</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">74</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">10</span> <span class="punctuation">}</span><span class="punctuation">,</span>
+                <span class="object_definition">@</span><span class="object_definition">animationFrame</span> <span class="punctuation">{</span> <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">600</span><span class="punctuation">;</span> <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">74</span><span class="punctuation">;</span> <span class="property_name">delay</span><span class="punctuation">:</span> <span class="number_literal">6</span> <span class="punctuation">}</span>
+            <span class="punctuation">]</span><span class="punctuation">;</span>
+            <span class="property_name">length</span><span class="punctuation">:</span> <span class="number_literal">6</span><span class="punctuation">;</span>
+        <span class="punctuation">}</span>
+    <span class="punctuation">]</span><span class="punctuation">;</span>
+    <span class="property_name">length</span><span class="punctuation">:</span> <span class="number_literal">3</span><span class="punctuation">;</span>
+    <span class="property_name">index</span><span class="punctuation">:</span> <span class="number_literal">0</span><span class="punctuation">;</span>
+<span class="punctuation">}</span><span class="punctuation">;</span>
+
+<span class="var_declaration">var</span> <span class="var_declaration">player</span><span class="punctuation">:</span> <span class="object_definition">@</span><span class="object_definition">characterController2d</span> <span class="punctuation">{</span>
+    <span class="property_name">sprite</span><span class="punctuation">:</span> <span class="object_definition">@</span><span class="object_definition">sprite</span> <span class="punctuation">{</span> <span class="property_name">id</span><span class="punctuation">:</span> <span class="number_literal">1</span> <span class="punctuation">}</span><span class="punctuation">;</span>
+    <span class="property_name">acceleration</span><span class="punctuation">:</span> <span class="number_literal">4</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+
+<span class="function_declaration">fn</span> <span class="function_declaration">onUpdate</span> <span class="punctuation">(</span><span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">f64</span> <span class="var_declaration">deltaTime</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+    <span class="var_name">anim</span><span class="punctuation">.</span><span class="property_name">update</span><span class="punctuation">(</span><span class="punctuation">)</span><span class="punctuation">;</span>
+    <span class="var_name">player</span><span class="punctuation">.</span><span class="property_name">update</span><span class="punctuation">(</span><span class="punctuation">)</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+
+
+<span class="selector">@root</span> <span class="punctuation">{</span>
+    <span class="property_name">width</span><span class="punctuation">:</span> <span class="number_literal">1440</span><span class="punctuation">;</span>
+    <span class="property_name">height</span><span class="punctuation">:</span> <span class="number_literal">920</span><span class="punctuation">;</span>
+    <span class="property_name">background</span><span class="punctuation">:</span> <span class="instruction">#</span><span class="instruction">0</span><span class="punctuation">;</span>
+    
+    <span class="instruction">#</span><span class="instruction">new</span> <span class="instruction">@</span><span class="instruction">sprite</span> <span class="selector">character</span> <span class="punctuation">{</span>
+        <span class="property_name">width</span><span class="punctuation">:</span> <span class="number_literal">100</span><span class="punctuation">;</span>
+        <span class="property_name">height</span><span class="punctuation">:</span> <span class="number_literal">74</span><span class="punctuation">;</span>
+        <span class="property_name">src</span><span class="punctuation">:</span> <span class="string">"adventurer-v1.5-Sheet.png"</span><span class="punctuation">;</span>
+        <span class="property_name">x</span><span class="punctuation">:</span> <span class="number_literal">150</span><span class="punctuation">;</span>
+        <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">100</span><span class="punctuation">;</span>
+    <span class="punctuation">}</span>
+<span class="punctuation">}</span>
+            </code>
+        </article>
+        <article id="features">
+            <h2>Features</h2>
+            
+            <section>
+                <h3>Familiar syntax</h3>
+                <p>LIL comes as the spiritual successor to the AXR Project, which originated in the world of web design. I took the syntax of HSS, the language which the plan was to act as the replacement for CSS, but way more powerful, and kept evolving it until it grew into a completely new idea which doesn’t have such great ambitions, but is way more practical instead.</p>
+                <p>That’s why some of the syntax features will remind you of CSS and even JavaScript or C++, but this is its own beast all by itself.</p>
+            </section>
+
+            <section>
+                <h3>Hardware accelerated 2d/3d rendering engine</h3>
+                <p>The plan is to have a full rendering engine for you to use. The most simple and useful syntax combined with powerful graphics capabilities at your fingertips so you can unleash your full potential and focus on building the app or game. And enjoy doing so!</p>
+            </section>
+
+            <section>
+                <h3>Free and open source</h3>
+                <p>I intend to make no money off the language and rendering engine themselves. They should be something free to use for everyone, no strings attached. That's why I need your support, see the donate section.</p>
+                <p><a href="https://github.com/veosotano/lil/" target="_blank">Click here to go the LIL Github repository</a></p>
+            </section>
+
+            <section>
+                <h3>Beginner friendly</h3>
+                <p>The whole language was designed with beginners in mind. People usually are much more visual than they are good at manipulating abstract data representations in their heads. For example, starting out with boxes, shapes and colors feels way more approachable than how you usually go about learning a traditional programming language, studying variables, functions and data types first.</p>
+                <p>Also, it is very good at progressive disclosure of complexity. This means that you don't have to import a header file and write a main function before you can even start doing anything, for example.</p>
+            </section>
+
+            <section>
+                <h3>Full featured low level language</h3>
+                <p>Even though for the typical app developer the language is very simple and easy to use, you can go as deep as you want, even go as far as to manipulate memory on the bit level. If you know what you are doing, you won't be limited by the language.</p>
+            </section>
+
+            <section>
+                <h3>Documented journey</h3>
+                <p>You will be able to follow my progress on the YouTube channel! I will also be streaming on Twitch from time to time. I intend to do all sorts of videos and tutorials, hopefully with high content value, both as a way to teach but also to showcase what is going on.</p>
+                <p><a href="https://www.youtube.com/channel/UC62W5nUVVAFZFJiv5wQmMqQ" target="_blank">Click here to go the LIL YouTube channel</a></p>
+            </section>
+        </article>
+        <article id="donate">
+            <h2>Donate</h2>
+            <p>This is my plea to you: if you want to help make this language a reality, please chip in <strong>5€</strong> a month (or whatever you can, lower quantities are greatly appreciated too!), so I can work on this project instead of needing to spend my time on other stuff in order to survive, when I could be working on this awesome new language instead!</p>
+            <div>
+                <p>Coming soon...</p>
+                <!-- <a href="https://patreon.com/user/lil_lang" target="_blank"><span>Donate here</span></a> -->
+            </div>
+        </article>
+        <article id="contribute">
+            <h2>Contribute</h2>
+            <p>If, on the other hand, you want to help out by actually doing stuff, please reach out to me over <a href="https://twitter.com/veosotano/" target="_blank">Twitter</a> or <a href="mailto:veosotano@gmail.com">email</a>. You don’t need to be good at programming to help. Just tweeting about this project already helps so much!</p>
+            <p>Please share this page with all your programmer friends. Lets make something great together!</p>
+        </article>
+        
+        <article id="signing_off">
+            <p>Yours, <br/>Miro Keller</p>
+        </article>
+    </div>
+</body>
+<script>
+    var form = document.getElementById("search_docs");
+    form.addEventListener("submit", function (e) {
+        var textfield = form.getElementsByTagName("input")[0];
+        var currentVal = textfield.value;
+        var site_prefix = "site:lil-language.com ";
+        textfield.value = site_prefix + currentVal;
+        setTimeout(function () {
+            textfield.value = currentVal;
+        }, 10);
+    });
+</script>
+</html>

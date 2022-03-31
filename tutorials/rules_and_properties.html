@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LIL is a language - Documentation</title>
+    <meta charset="UTF8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/foundation.css" />
+    <style>
+        #content
+        {
+            padding-top: 30px;
+        }
+        #content > article
+        {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>
+                <a href="../index.html">
+                    <span class="title">LIL is a Language</span>
+                    <span class="subtitle">Make games, nicely</span>
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="../docs/index.html">Documentation</a></li>
+                    <li><a href="../index.html#donate">Donate</a></li>
+                    <li><a href="../index.html#contribute">Contribute</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        <article id="intro">
+            <h2>Rules and properties</h2>
+            <p>This is the declarative programming side of LIL. You say "who" receives the values using selectors and give values to properties.</p>
+            <p>The first thing you'll do is to target the outermost element, which is automatically created for you and is called the root object. We'll use the root selector @root to access it.</p>
+<code>
+<span class="object">@root</span> { <span class="comment">//who will be affected</span>
+    <span class="comment">//properties here</span>
+}
+            </code>
+            <p>Let's add something useful in there. We'll make its background color light gray. Change the code to be like this:</p>
+            <code>
+<span class="object">@root</span> {
+    <span class="prop_name">background</span>: <span class="instruction">#E</span>;
+}
+            </code>
+            <p>This is using what's known as a color instruction. The compiler will turn it into an object definition of type @rgb, so what we wrote is a shortcut for this:</p>
+            <code>
+<span class="object">@root</span> {
+    <span class="prop_name">background</span>: <span class="object">@rgb</span> {
+        <span class="prop_name">red</span>: <span class="number">0.8</span>;
+        <span class="prop_name">green</span>: <span class="number">0.8</span>;
+        <span class="prop_name">blue</span>: <span class="number">0.8</span>;
+        <span class="prop_name">alpha</span>: <span class="number">1.0</span>;
+    };
+}
+            </code>
+            <p>If you are asking yourself what those @ mean, it is a character that denotes that we are talking about an object type. So the @rgb means an object of type rgb. But in the case of @root, it represents the root object inside a selector. If that sounds confusing don't worry, it's all very obvious once you get used to it.</p>
+        </article>
+        <article id="next_tutorial">
+            <nav>
+                <a href="main_window.html">Next tutorial: setting up the main window</a>
+            </nav>
+        </article>
+    </div>
+</body>
+</html>

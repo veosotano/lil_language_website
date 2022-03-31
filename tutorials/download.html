@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LIL is a language - Documentation</title>
+    <meta charset="UTF8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <link rel="stylesheet" href="../css/foundation.css" />
+    <style>
+        #content
+        {
+            padding-top: 30px;
+        }
+        #content > article
+        {
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        #content > article ol
+        {
+            padding-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>
+                <a href="../index.html">
+                    <span class="title">LIL is a Language</span>
+                    <span class="subtitle">Make games, nicely</span>
+                </a>
+            </h1>
+            <nav>
+                <ul>
+                    <li><a href="../docs/index.html">Documentation</a></li>
+                    <li><a href="../index.html#donate">Donate</a></li>
+                    <li><a href="../index.html#contribute">Contribute</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="content">
+        <article id="intro">
+            <h2>Downloading and installing the LIL Compiler</h2>
+            <p>This guide will take you through the steps necessary to set up your computer so that you can start programming with the LIL language.</p>
+            <p>WARNING: Right now it only has ever been used on a Mac. It is probable that it doesn't work anywhere else yet.</p>
+            <p>System Requirements: MacOS Sierra 10.12 or newer</p>
+        </article>
+
+        <article id="instructions">
+            <h3>Normal installation</h3>
+            <ol>
+                <li>Go to <a href="https://lil-language.com/">https://lil-language.com/</a> and click the big yellow button.</li>
+                <li>Go to your downloads folder and extract the ZIP file.</li>
+                <li>Copy the files somewhere you like. It doesn't matter where, but they must all be in the same directory.</li>
+                <li>
+                    (Optional) Add the directory to your PATH so you can more easily invoke the compiler.
+                    <p><a href="https://google.com/search?q=How to change your PATH on Unix" target="_blank">How to change your PATH</a></p>
+                </li>
+                <li>Usage: lil myFile.lil --run</li>
+            </ol>
+        </article>
+        
+        <article id="from_source">
+            <h3>Building from source files (optional)</h3>
+            <p>If you want to contribute the best thing to do is to build everything from source. It takes a while, though, be prepared.</p>
+            <p>Warning: WORK IN PROGRESS</p>
+            <p>This is how I've been doing it so far, which is far from ideal, and only on Mac</p>
+            <ol>
+                <li>Build LLVM. Warning: this might take hours.</li>
+                <li>Download the LIL sources from GitHub</li>
+                <li>Create a new Xcode project (Command Line Tool)</li>
+                <li>Add all source files to the project</li>
+                <li>Add all folders as "Search Header Paths"</li>
+                <li>Add the LLVM static libraries to link to them</li>
+                <li>Hit build</li>
+                <li>(Optional) Configure arguments to be passed at launch so you can use Build &amp; Run</li>
+            </ol>
+        </article>
+        <article id="next_tutorial">
+            <nav>
+                <a href="hello_world.html">Next tutorial: your first Hello World program in LIL!</a>
+            </nav>
+        </article>
+    </div>
+</body>
+</html>
