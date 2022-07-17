@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LIL is a language - Documentation</title>
+	<meta charset="UTF8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="../css/foundation.css" />
+</head>
+<body>
+	<header>
+		<div>
+			<h1>
+				<a href="../index.html">
+					<span class="title">LIL is a Language</span>
+					<span class="subtitle">Make games, nicely</span>
+				</a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Documentation</a></li>
+					<li><a href="../index.html#donate">Donate</a></li>
+					<li><a href="../index.html#contribute">Contribute</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div id="content">
+		<div>
+			<section id="sidebar">
+				<nav>
+					<h3>Classes</h3>
+					<ul>
+						<li><a href="class_app.html">@app</a></li>
+						<li><a href="class_element.html">@element</a></li>
+						<li><a href="class_container.html">@container</a></li>
+						<li><a href="class_image.html">@image</a></li>
+						<li><a href="class_sprite.html">@sprite</a></li>
+						<li><a href="class_shape2d.html">@shape2d</a></li>
+						<li><a href="class_rgb.html">@rgb</a></li>
+						<li><a href="class_string.html">@string</a></li>
+						<li><a href="class_array.html">@array</a></li>
+						<li><a href="class_input.html">@input</a></li>
+						<li><a href="class_mouseEvent.html">@mouseEvent</a></li>
+					</ul>
+					<!-- <h3>Functions</h3>
+					<ul>
+						<li><a href="msg.html">Global Messages</a></li>
+						<li><a href="fn_print.html">print</a></li>
+					</ul> -->
+				</nav>
+			</section>
+			<section id="doc">
+				<article class="intro">
+					<h2>@shape2d</h2>
+					<div class="desc"><p>A 2D shape is made up of a series of drawing commands, like lineTo and curveTo.</p><p>Warning: Work in Progress! (only moveTo and lineTo have been implemented so far.)</p></div>
+				</article>
+				<article class="example_code">
+					<h3>Example code</h3>
+					<pre><code>#new @shape2d myStar {
+	x: 200;
+	y: 100;
+	background: #FD00C8;
+
+	moveTo(170.555, 162.807);
+	lineTo(275.903, 162.807);
+	lineTo(190.674, 100.885);
+	lineTo(223.229, 0.692535);
+	lineTo(138.000, 62.6149);
+	lineTo(52.7711, 0.692535);
+	lineTo(85.3257, 100.885);
+	lineTo(0.0968018, 162.807);
+	lineTo(105.445, 162.807);
+	lineTo(138, 263);
+	lineTo(170.555, 162.807);
+};</code></pre>
+				</article>
+
+
+<article class="virtual_variables">
+	<h3>Virtual variables</h3>
+	<ul>
+		<li>
+	<h4>componentId</h4>
+	<div class="type"><p>Type: vvar.i64</p></div>
+	<div class="desc"><p>The identifier of the shape data.</p></div>
+	<pre><code>app.shapes[@self.componentId].width: value;</code></pre>
+
+</li>
+<li>
+	<h4>width</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>How wide the shape is. Currently unused.</p></div>
+
+</li>
+<li>
+	<h4>height</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>How tall the shape is. Currently unused.</p></div>
+
+</li>
+<li>
+	<h4>x</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>The position along the horizontal axis.</p></div>
+	<pre><code>theShape.x: 300;</code></pre>
+
+</li>
+<li>
+	<h4>y</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>The position along the vertical axis.</p></div>
+	<pre><code>theShape.y +: 100;</code></pre>
+
+</li>
+<li>
+	<h4>z</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>The position along the direction of the depth.</p></div>
+	<pre><code>theShape.z: 0;</code></pre>
+
+</li>
+<li>
+	<h4>background</h4>
+	<div class="type"><p>Type: vvar.@rgb</p></div>
+	<div class="desc"><p>A color object representing the background color of this shape.</p></div>
+	<pre><code>theShape.background: #F00;</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+
+<article class="functions">
+	<h3>Member functions</h3>
+	<ul>
+		<li>
+	<h4>getComponentId</h4>
+	<div class="type"><p>Type: fn => i64 </p></div>
+	<div class="desc"><p>Accessor for the componentId vvar.</p></div>
+
+	<pre><code>var componentId: @self.getComponentId();</code></pre>
+
+</li>
+<li>
+	<h4>initialize</h4>
+	<div class="type"><p>Type: fn(ptr(i8),i64) => i64 </p></div>
+	<div class="desc"><p>This method installs a new 2D shape into the ECS.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.ptr(i8) name: <p>The name of the new shape.</p></li>
+<li> var.i64 parentId: <p>The id of the parent of the new shape. Defaults to 0, which is the id of the @root object.</p></li>
+
+	</ul>
+	<pre><code>var theShape: @shape2d { };
+theShape.initialize(`myShape`, 0);</code></pre>
+
+</li>
+<li>
+	<h4>setWidth</h4>
+	<div class="type"><p>Type: fn(f32) </p></div>
+	<div class="desc"><p>Setter for the width vvar. Currently unused.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 value: <p>The number in pixels for the width.</p></li>
+
+	</ul>
+	<pre><code>theShape.setWidth(100);</code></pre>
+
+</li>
+<li>
+	<h4>getWidth</h4>
+	<div class="type"><p>Type: fn => f32 </p></div>
+	<div class="desc"><p>Getter for the width vvar.</p></div>
+
+	<pre><code>if theShape.getWidth() &gt; 200 {
+	//etc
+}</code></pre>
+
+</li>
+<li>
+	<h4>setHeight</h4>
+	<div class="type"><p>Type: fn(f32) </p></div>
+	<div class="desc"><p>Setter for the height vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 value: <p>The number in pixels for the height. Currently unused.</p></li>
+
+	</ul>
+	<pre><code></code></pre>
+
+</li>
+<li>
+	<h4>getHeight</h4>
+	<div class="type"><p>Type: fn => f32 </p></div>
+	<div class="desc"><p>Getter for the height vvar.</p></div>
+
+	<pre><code>print theShape.getHeight();</code></pre>
+
+</li>
+<li>
+	<h4>setX</h4>
+	<div class="type"><p>Type: fn(f32) </p></div>
+	<div class="desc"><p>Setter for the x vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 value: <p>The number in pixels for the x coordinate.</p></li>
+
+	</ul>
+	<pre><code>theShape.setX(200);</code></pre>
+
+</li>
+<li>
+	<h4>getX</h4>
+	<div class="type"><p>Type: fn => f32 </p></div>
+	<div class="desc"><p>Getter for the x vvar.</p></div>
+
+	<pre><code>if theShape.getX() &gt; 100 {
+	//etc
+}</code></pre>
+
+</li>
+<li>
+	<h4>setY</h4>
+	<div class="type"><p>Type: fn(f32) </p></div>
+	<div class="desc"><p>Setter for the y vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 value: <p>The number in pixels for the y coordinate.</p></li>
+
+	</ul>
+	<pre><code>theShape.setY(0);</code></pre>
+
+</li>
+<li>
+	<h4>getY</h4>
+	<div class="type"><p>Type: fn => f32 </p></div>
+	<div class="desc"><p>Getter for the y vvar.</p></div>
+
+	<pre><code>var currentY: theShape.getY();</code></pre>
+
+</li>
+<li>
+	<h4>setZ</h4>
+	<div class="type"><p>Type: fn(f32) </p></div>
+	<div class="desc"><p>Setter for the z vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 value: <p>The number in pixels for the z coordinate.</p></li>
+
+	</ul>
+	<pre><code>theShape.setZ(0);</code></pre>
+
+</li>
+<li>
+	<h4>getZ</h4>
+	<div class="type"><p>Type: fn => f32 </p></div>
+	<div class="desc"><p>Getter for the z vvar.</p></div>
+
+	<pre><code>if theShape.getZ() &gt; 0 {
+	//etc
+}
+</code></pre>
+
+</li>
+<li>
+	<h4>getBackground</h4>
+	<div class="type"><p>Type: fn => @rgb </p></div>
+	<div class="desc"><p>Value accessor for the background vvar.</p></div>
+
+	<pre><code>var color: theShape.getBackground();</code></pre>
+
+</li>
+<li>
+	<h4>getBackgroundPointer</h4>
+	<div class="type"><p>Type: fn => ptr(@rgb) </p></div>
+	<div class="desc"><p>Pointer accessor for the background vvar.</p></div>
+
+	<pre><code>var colorPtr: theShape.getBackgroundPointer();</code></pre>
+
+</li>
+<li>
+	<h4>moveTo</h4>
+	<div class="type"><p>Type: fn(f32,f32) </p></div>
+	<div class="desc"><p>Starts a new subpath at the specified location.</p><p>Imagine the "virtual pen" gets lifted off the surface and placed somewhere else.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 x: <p>The number in pixels for the x coordinate.</p></li>
+<li> var.f32 y: <p>The number in pixels for the y coordinate.</p></li>
+
+	</ul>
+	<pre><code>theShape.moveTo(123, 250.7)</code></pre>
+
+</li>
+<li>
+	<h4>lineTo</h4>
+	<div class="type"><p>Type: fn(f32,f32) </p></div>
+	<div class="desc"><p>Draws a line from the previous point to the given one.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 x: <p>The number in pixels for the x coordinate.</p></li>
+<li> var.f32 y: <p>The number in pixels for the y coordinate.</p></li>
+
+	</ul>
+
+</li>
+
+	</ul>
+</article>
+
+
+				<article class="code">
+					<h3>Go look at the code!</h3>
+					<p>To gain a better understanding of this class, it is recommended to look at the source code of the following file:</p>
+					<p><a href="https://github.com/veosotano/lil/blob/main/std/app.lil">https://github.com/veosotano/lil/blob/main/std/app.lil</a>
+				</article>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

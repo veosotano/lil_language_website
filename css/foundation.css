@@ -36,9 +36,7 @@ strong
 }
 
 p {
-    padding-top: 10px;
-    padding-bottom: 20px;
-    margin: 0;
+    margin: 10px 0 20px 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -116,19 +114,29 @@ header > div > nav > ul > li
     font-size: 0.9em;
 }
 
-code {
+pre
+{
+	margin: 0;
+}
+
+pre code {
     display: block;
     white-space: pre;
     background: rgba(248,250,255);
     font-size: 0.9em;
     border: 1px solid #AAA;
-    padding: 0 20px;
+    padding: 20px;
     border-radius: 4px;
     -webkit-box-shadow: inset 0px 0px 8px 3px rgba(0,0,0,0.19);
     -moz-box-shadow: inset 0px 0px 8px 3px rgba(0,0,0,0.19);
     box-shadow: inset 0px 0px 8px 3px rgba(0,0,0,0.19);
     overflow: scroll;
-    margin-top: 10px;
+}
+
+p > code,
+li > code {
+	background: #F0F0F0;
+	padding: 3px;
 }
 
 code .comment {
@@ -143,8 +151,13 @@ code .bool {
     color: #70A5CC;
 }
 
-code .number_literal {
+code .number_literal,
+code .bool_literal {
     color: #0000FF;
+}
+
+code .string_literal {
+    color: #FF0000;
 }
 
 code .type,
@@ -160,7 +173,11 @@ code .function_call
     color: #6A74CC;
 }
 
-code .var_declaration,
+code .var_declaration
+{
+	color: #8657CC;
+}
+
 code .var_name
 {
     color: #CC916A;
@@ -173,7 +190,8 @@ code .string_function
     color: #FF0000;
 }
 
-code .flow_control {
+code .flow_control,
+code .flow_control_call {
     color: #00D044;
 }
 
@@ -194,6 +212,10 @@ code .property_name {
 code .selector
 {
     color: #DBAD00;
+}
+
+code .class_declaration {
+    color: #00ACDB;
 }
 
 #content {
@@ -218,6 +240,15 @@ code .selector
     margin-right: 30px;
 }
 
+#sidebar > nav > h3
+{
+	padding-top: 15px;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #C4D4EE;
+	margin-right: 25px;
+	margin-bottom: 10px;
+}
+
 #sidebar ul {
     list-style: none;
     margin: 0;
@@ -238,18 +269,28 @@ code .selector
     border-radius: 7px;
 }
 
+#doc code
+{
+	display: inline;
+}
+
+#doc pre > code
+{
+	display: block;
+}
+
 #doc article
 {
-    margin-bottom: 10px;
+    margin-bottom: 40px;
 }
 #doc article h3
 {
     margin-bottom: 10px;
 }
 
-#doc article ul > li
+#doc article > ul > li
 {
-    margin: 0;
+    margin: 0 0 40px 0;
 }
 
 #doc article > a
@@ -269,14 +310,16 @@ code .selector
     background: rgba(235,240,250,1);
 }
 
-#doc article.variables li
+#doc article.variables > li,
+#doc article.functions > li
 {
 	padding-bottom: 20px;
     border-bottom: 1px solid rgba(235,240,250,1);
 	margin-bottom: 15px;
 }
 
-#doc article.variables li > h4
+#doc article.variables li > h4,
+#doc article.functions li > h4
 {
 	background: rgba(235,240,250,1);
 }
@@ -284,6 +327,16 @@ code .selector
 #doc article.variables p
 {
 	padding-bottom: 0;
+}
+
+#doc > h2
+{
+	padding-bottom: 20px;
+}
+
+#doc article > h3
+{
+	border-bottom: 1px solid #DDD;
 }
 
 @media (max-width: 500px) {

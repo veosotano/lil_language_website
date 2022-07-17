@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LIL is a language - Documentation</title>
+	<meta charset="UTF8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="../css/foundation.css" />
+</head>
+<body>
+	<header>
+		<div>
+			<h1>
+				<a href="../index.html">
+					<span class="title">LIL is a Language</span>
+					<span class="subtitle">Make games, nicely</span>
+				</a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Documentation</a></li>
+					<li><a href="../index.html#donate">Donate</a></li>
+					<li><a href="../index.html#contribute">Contribute</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div id="content">
+		<div>
+			<section id="sidebar">
+				<nav>
+					<h3>Classes</h3>
+					<ul>
+						<li><a href="class_app.html">@app</a></li>
+						<li><a href="class_element.html">@element</a></li>
+						<li><a href="class_container.html">@container</a></li>
+						<li><a href="class_image.html">@image</a></li>
+						<li><a href="class_sprite.html">@sprite</a></li>
+						<li><a href="class_shape2d.html">@shape2d</a></li>
+						<li><a href="class_rgb.html">@rgb</a></li>
+						<li><a href="class_string.html">@string</a></li>
+						<li><a href="class_array.html">@array</a></li>
+						<li><a href="class_input.html">@input</a></li>
+						<li><a href="class_mouseEvent.html">@mouseEvent</a></li>
+					</ul>
+					<!-- <h3>Functions</h3>
+					<ul>
+						<li><a href="msg.html">Global Messages</a></li>
+						<li><a href="fn_print.html">print</a></li>
+					</ul> -->
+				</nav>
+			</section>
+			<section id="doc">
+				<article class="intro">
+					<h2>@sprite</h2>
+					<div class="desc"><p>A sprite is an image which clips its content to a given box.</p><p>This class extends the @image class with the clipping functionality</p></div>
+				</article>
+				<article class="example_code">
+					<h3>Example code</h3>
+					<pre><code>#new @sprite character {
+	width: 64;
+	height: 64
+	src: "sprite.png";
+	x: 20;
+	y: 10;
+	clipX: 0;
+	clipY: 128;
+}</code></pre>
+				</article>
+
+
+<article class="virtual_variables">
+	<h3>Virtual variables</h3>
+	<ul>
+		<li>
+	<h4>clipX</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>The location on the horizontal axis of where to place the clipping window.</p></div>
+	<pre><code>mySprite.clipX: 0;</code></pre>
+
+</li>
+<li>
+	<h4>clipY</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>#= The location on the vertical axis of where to place the clipping window.</p></div>
+	<pre><code>&lt;lil&gt;mySprite.clipY +: 64;</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+<article class="variables">
+	<h3>Member variables</h3>
+	<ul>
+		<li>
+	<h4>super</h4>
+	<div class="type"><p>Type: var.@image</p></div>
+	<div class="desc"><p>The @image superclass. This field is expanded and gives this class its id field and the vvars interface from @image.</p></div>
+	<pre><code>var image: @self.super;</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+
+
+				<article class="code">
+					<h3>Go look at the code!</h3>
+					<p>To gain a better understanding of this class, it is recommended to look at the source code of the following file:</p>
+					<p><a href="https://github.com/veosotano/lil/blob/main/std/app.lil">https://github.com/veosotano/lil/blob/main/std/app.lil</a>
+				</article>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

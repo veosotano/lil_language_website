@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LIL is a language - Documentation</title>
+	<meta charset="UTF8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="../css/foundation.css" />
+</head>
+<body>
+	<header>
+		<div>
+			<h1>
+				<a href="../index.html">
+					<span class="title">LIL is a Language</span>
+					<span class="subtitle">Make games, nicely</span>
+				</a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Documentation</a></li>
+					<li><a href="../index.html#donate">Donate</a></li>
+					<li><a href="../index.html#contribute">Contribute</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div id="content">
+		<div>
+			<section id="sidebar">
+				<nav>
+					<h3>Classes</h3>
+					<ul>
+						<li><a href="class_app.html">@app</a></li>
+						<li><a href="class_element.html">@element</a></li>
+						<li><a href="class_container.html">@container</a></li>
+						<li><a href="class_image.html">@image</a></li>
+						<li><a href="class_sprite.html">@sprite</a></li>
+						<li><a href="class_shape2d.html">@shape2d</a></li>
+						<li><a href="class_rgb.html">@rgb</a></li>
+						<li><a href="class_string.html">@string</a></li>
+						<li><a href="class_array.html">@array</a></li>
+						<li><a href="class_input.html">@input</a></li>
+						<li><a href="class_mouseEvent.html">@mouseEvent</a></li>
+					</ul>
+					<!-- <h3>Functions</h3>
+					<ul>
+						<li><a href="msg.html">Global Messages</a></li>
+						<li><a href="fn_print.html">print</a></li>
+					</ul> -->
+				</nav>
+			</section>
+			<section id="doc">
+				<article class="intro">
+					<h2>@app</h2>
+					<div class="desc"><p>The app object is the heart of your application. It provides the storage for the ECS architecture and stuff like movement or the selection system.</p><p>The file std/app.lil defines a global variable called app. You can call methods on it directly, but usually it is changed indirectly, through classes such as @container or @sprite.</p></div>
+				</article>
+				<article class="example_code">
+					<h3>Example code</h3>
+					<pre><code>//you wouldn't usually do this, it is just an example
+app.selectByName(
+	nameId: app.registerName(`mytestobj`);
+	parentId: 0
+);</code></pre>
+				</article>
+
+
+
+<article class="variables">
+	<h3>Member variables</h3>
+	<ul>
+		<li>
+	<h4>selectables</h4>
+	<div class="type"><p>Type: var.[2048 x @selectable]</p></div>
+	<div class="desc"><p>Each item in the ECS corresponds to one selectable of this array.</p></div>
+	<pre><code>var sel: pointerTo app.selectables[entityId];</code></pre>
+
+</li>
+<li>
+	<h4>boxPositions</h4>
+	<div class="type"><p>Type: var.[2048 x @pos]</p></div>
+	<div class="desc"><p>Position storage for boxes (containers).</p></div>
+	<pre><code>app.boxPositions[i].x +: ((app.boxVelocities[i].x =&gt; f64) * dt) =&gt; f32;</code></pre>
+
+</li>
+<li>
+	<h4>boxVelocities</h4>
+	<div class="type"><p>Type: var.[2048 x @vel]</p></div>
+	<div class="desc"><p>Storage for the velocities of boxes.</p></div>
+	<pre><code>app.boxVelocities[@self.componentId]: value;</code></pre>
+
+</li>
+<li>
+	<h4>box2ds</h4>
+	<div class="type"><p>Type: var.[2048 x @box2d]</p></div>
+	<div class="desc"><p>The data of the 2d boxes is stored in this static array.</p></div>
+	<pre><code>var bgColor: app.box2ds[0].bgColor;</code></pre>
+
+</li>
+<li>
+	<h4>boxCount</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>The amount of 2d boxes that are currently in use.</p></div>
+	<pre><code>vertexCount: app.boxCount * 6;</code></pre>
+
+</li>
+<li>
+	<h4>imgPositions</h4>
+	<div class="type"><p>Type: var.[2048 x @pos]</p></div>
+	<div class="desc"><p>Position storage for images.</p></div>
+	<pre><code>app.imgPositions[@self.componentId].x: value;</code></pre>
+
+</li>
+<li>
+	<h4>imgVelocities</h4>
+	<div class="type"><p>Type: var.[2048 x @vel]</p></div>
+	<div class="desc"><p>The velocities of the images are stored in this static array.</p></div>
+	<pre><code>app.imgPositions[i].x +: ((app.imgVelocities[i].x =&gt; f64) * dt) =&gt; f32;</code></pre>
+
+</li>
+<li>
+	<h4>imgClips</h4>
+	<div class="type"><p>Type: var.[2048 x @pos2d]</p></div>
+	<div class="desc"><p>Storage for clipping data of @sprite objects.</p></div>
+	<pre><code>var clip: app.imgClips[i];</code></pre>
+
+</li>
+<li>
+	<h4>imgs</h4>
+	<div class="type"><p>Type: var.[2048 x @img]</p></div>
+	<div class="desc"><p>Image data such as width and height are stored in this static array.</p></div>
+	<pre><code>app.imgs[imgId].textureWidth: width;</code></pre>
+
+</li>
+<li>
+	<h4>imgCount</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>The amount of images that are currently in use.</p></div>
+	<pre><code>var.i64 bufferSize: (sizeOf(type @vertex) * 6 * app.imgCount);</code></pre>
+
+</li>
+<li>
+	<h4>shapes</h4>
+	<div class="type"><p>Type: var.[2048 x @shapeData]</p></div>
+	<div class="desc"><p>Storage for vector shape data.</p></div>
+	<pre><code>var shape: pointerTo app.shapes[i];</code></pre>
+
+</li>
+<li>
+	<h4>shapesCount</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>The amount of vector shapes that are currently in use.</p></div>
+	<pre><code>for (var.i64 i:0; i&lt;app.shapesCount; i+:1) {
+//etc
+}</code></pre>
+
+</li>
+<li>
+	<h4>colliderIds</h4>
+	<div class="type"><p>Type: var.[2048 x i64]</p></div>
+	<div class="desc"><p>This is currently unused</p></div>
+
+</li>
+<li>
+	<h4>colliders</h4>
+	<div class="type"><p>Type: var.[32 x @collider]</p></div>
+	<div class="desc"><p>This is currently unused</p></div>
+
+</li>
+<li>
+	<h4>names</h4>
+	<div class="type"><p>Type: var.[32 x ptr(i8)]</p></div>
+	<div class="desc"><p>Storage for names that have been given a name id.</p></div>
+	<pre><code>@self.names[currentCount]: name;</code></pre>
+
+</li>
+<li>
+	<h4>nameCount</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>The amount of names that are currently in use.</p></div>
+	<pre><code>@self.nameCount +: 1;</code></pre>
+
+</li>
+<li>
+	<h4>typeCount</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>The amount of types of objects that are currently in use.</p></div>
+	<pre><code>var currentCount: @self.typeCount;</code></pre>
+
+</li>
+<li>
+	<h4>resourceIds</h4>
+	<div class="type"><p>Type: var.[2048 x i64]</p></div>
+	<div class="desc"><p>Storage for the ids of resources.</p></div>
+	<pre><code>var resId: app.resourceIds[id];</code></pre>
+
+</li>
+<li>
+	<h4>resources</h4>
+	<div class="type"><p>Type: var.[2048 x @resource]</p></div>
+	<div class="desc"><p>Data of resources are stored in this static array.</p></div>
+	<pre><code>return pointerTo app.resources[resId];</code></pre>
+
+</li>
+<li>
+	<h4>resourceCount</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>The amount of resources that are currently in use.</p></div>
+	<pre><code>@self.resourceIds[@self.resourceCount]: id;</code></pre>
+
+</li>
+<li>
+	<h4>actions</h4>
+	<div class="type"><p>Type: var.[2048 x @action]</p></div>
+	<div class="desc"><p>Action data is stored in this static array.</p></div>
+	<pre><code>var action: app.actions[i];</code></pre>
+
+</li>
+<li>
+	<h4>actionCount</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>The amount of actions that are currently in use.</p></div>
+	<pre><code>var currentCount: @self.actionCount;</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+<article class="functions">
+	<h3>Member functions</h3>
+	<ul>
+		<li>
+	<h4>initialize</h4>
+	<div class="type"><p>Type: fn </p></div>
+	<div class="desc"><p>Sets up the background color and mouse listener</p></div>
+
+	<pre><code>app.initialize();</code></pre>
+
+</li>
+<li>
+	<h4>newEntity</h4>
+	<div class="type"><p>Type: fn => i64 </p></div>
+	<div class="desc"><p>Bumps the current entity count by one and returns the new entity id</p></div>
+
+	<pre><code>var newId: app.newEntity();</code></pre>
+
+</li>
+<li>
+	<h4>newType</h4>
+	<div class="type"><p>Type: fn => i64 </p></div>
+	<div class="desc"><p>Bumps the current type count by one and returns the new type id</p></div>
+
+	<pre><code>var newTypeId: app.newType();</code></pre>
+
+</li>
+<li>
+	<h4>registerName</h4>
+	<div class="type"><p>Type: fn(ptr(i8)) => i64 </p></div>
+	<div class="desc"><p>For each unique string passed in to this function it returns a corresponding id.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.ptr(i8) name: <p>The C string containing the name to be identified.</lil></p></li>
+
+	</ul>
+	<pre><code>var.i64 nameId: @self.registerName(name);</code></pre>
+
+</li>
+<li>
+	<h4>getName</h4>
+	<div class="type"><p>Type: fn(i64) => ptr(i8) </p></div>
+	<div class="desc"><p>Returns the name at given id.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 id: <p>The number that was previously handed out by the registerName method.</p></li>
+
+	</ul>
+
+</li>
+
+	</ul>
+</article>
+
+
+				<article class="code">
+					<h3>Go look at the code!</h3>
+					<p>To gain a better understanding of this class, it is recommended to look at the source code of the following file:</p>
+					<p><a href="https://github.com/veosotano/lil/blob/main/std/app.lil">https://github.com/veosotano/lil/blob/main/std/app.lil</a>
+				</article>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

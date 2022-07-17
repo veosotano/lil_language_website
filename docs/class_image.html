@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LIL is a language - Documentation</title>
+	<meta charset="UTF8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="../css/foundation.css" />
+</head>
+<body>
+	<header>
+		<div>
+			<h1>
+				<a href="../index.html">
+					<span class="title">LIL is a Language</span>
+					<span class="subtitle">Make games, nicely</span>
+				</a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Documentation</a></li>
+					<li><a href="../index.html#donate">Donate</a></li>
+					<li><a href="../index.html#contribute">Contribute</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div id="content">
+		<div>
+			<section id="sidebar">
+				<nav>
+					<h3>Classes</h3>
+					<ul>
+						<li><a href="class_app.html">@app</a></li>
+						<li><a href="class_element.html">@element</a></li>
+						<li><a href="class_container.html">@container</a></li>
+						<li><a href="class_image.html">@image</a></li>
+						<li><a href="class_sprite.html">@sprite</a></li>
+						<li><a href="class_shape2d.html">@shape2d</a></li>
+						<li><a href="class_rgb.html">@rgb</a></li>
+						<li><a href="class_string.html">@string</a></li>
+						<li><a href="class_array.html">@array</a></li>
+						<li><a href="class_input.html">@input</a></li>
+						<li><a href="class_mouseEvent.html">@mouseEvent</a></li>
+					</ul>
+					<!-- <h3>Functions</h3>
+					<ul>
+						<li><a href="msg.html">Global Messages</a></li>
+						<li><a href="fn_print.html">print</a></li>
+					</ul> -->
+				</nav>
+			</section>
+			<section id="doc">
+				<article class="intro">
+					<h2>@image</h2>
+					<div class="desc"><p>An image is a box with a texture.</p></div>
+				</article>
+				<article class="example_code">
+					<h3>Example code</h3>
+					<pre><code>#new @image logo {
+	src: "logo.png";
+	x: 20;
+	y: 10;
+}</code></pre>
+				</article>
+
+
+<article class="virtual_variables">
+	<h3>Virtual variables</h3>
+	<ul>
+		<li>
+	<h4>componentId</h4>
+	<div class="type"><p>Type: vvar.i64</p></div>
+	<div class="desc"><p>The identifier of the data for this image.</p></div>
+	<pre><code>app.imgs[@self.componentId].width: value;</code></pre>
+
+</li>
+<li>
+	<h4>width</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>How wide the image is.</p></div>
+	<pre><code>theImage.width: 100;</code></pre>
+
+</li>
+<li>
+	<h4>height</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>How tall the image is.</p></div>
+	<pre><code>var height: theImage.height;</code></pre>
+
+</li>
+<li>
+	<h4>x</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>The position along the horizontal axis.</p></div>
+	<pre><code>theImage.x +: 100;</code></pre>
+
+</li>
+<li>
+	<h4>y</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>The position along the vertical axis.</p></div>
+	<pre><code>theImage.y -: 20;</code></pre>
+
+</li>
+<li>
+	<h4>z</h4>
+	<div class="type"><p>Type: vvar.f32</p></div>
+	<div class="desc"><p>The position along the direction of the depth.</p></div>
+	<pre><code>theImage.z: 0;</code></pre>
+
+</li>
+<li>
+	<h4>velocity</h4>
+	<div class="type"><p>Type: vvar.@vel</p></div>
+	<div class="desc"><p>The speed at which this image should move, in pixels per 60th of a second.</p></div>
+	<pre><code>theImage.velocity: @vel { x: 3; y: 5 };</code></pre>
+
+</li>
+<li>
+	<h4>src</h4>
+	<div class="type"><p>Type: vvar.ptr(@string)</p></div>
+	<div class="desc"><p>A string containing the file path for the resource. Returns the string as a cstr.</p></div>
+	<pre><code>theImage.src: &quot;sprite.png&quot;;</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+<article class="variables">
+	<h3>Member variables</h3>
+	<ul>
+		<li>
+	<h4>super</h4>
+	<div class="type"><p>Type: var.@element</p></div>
+	<div class="desc"><p>The @element superclass. This field is expanded and gives this class its id field.</p></div>
+	<pre><code>var elem: @self.super;</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+<article class="functions">
+	<h3>Member functions</h3>
+	<ul>
+		<li>
+	<h4>getComponentId</h4>
+	<div class="type"><p>Type: fn => i64 </p></div>
+	<div class="desc"><p>Accessor for the componentId vvar.</p></div>
+
+	<pre><code>var componentId: @self.getComponentId();</code></pre>
+
+</li>
+<li>
+	<h4>initialize</h4>
+	<div class="type"><p>Type: fn(ptr(i8),i64) => i64 </p></div>
+	<div class="desc"><p>This method installs a new image into the ECS.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.ptr(i8) name: <p>The name of the new image.</p></li>
+<li> var.i64 parentId: <p>The id of the parent of the new image. Defaults to 0, which is the id of the @root object.</p></li>
+
+	</ul>
+	<pre><code>var theImage: @image { };
+theImage.initialize(`myImage`, 0);</code></pre>
+
+</li>
+<li>
+	<h4>setWidth</h4>
+	<div class="type"><p>Type: fn(f32) </p></div>
+	<div class="desc"><p>Setter for the width vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 value: <p>The number in pixels for the width.</p></li>
+
+	</ul>
+	<pre><code>theImage.setWidth(100);</code></pre>
+
+</li>
+<li>
+	<h4>getWidth</h4>
+	<div class="type"><p>Type: fn => f32 </p></div>
+	<div class="desc"><p>Getter for the width vvar.</p></div>
+
+	<pre><code>if theImage.getWidth() &gt; 200 {
+	//etc
+}</code></pre>
+
+</li>
+<li>
+	<h4>setHeight</h4>
+	<div class="type"><p>Type: fn(f32) </p></div>
+	<div class="desc"><p>Setter for the height vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 value: <p>The number in pixels for the height.</p></li>
+
+	</ul>
+	<pre><code>theImage.setHeight(200);</code></pre>
+
+</li>
+<li>
+	<h4>getHeight</h4>
+	<div class="type"><p>Type: fn => f32 </p></div>
+	<div class="desc"><p>Getter for the height vvar.</p></div>
+
+	<pre><code>print theImage.getHeight();</code></pre>
+
+</li>
+<li>
+	<h4>setX</h4>
+	<div class="type"><p>Type: fn(f32) </p></div>
+	<div class="desc"><p>Setter for the x vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 value: <p>The number in pixels for the x coordinate.</p></li>
+
+	</ul>
+	<pre><code>theImage.setX(200);</code></pre>
+
+</li>
+<li>
+	<h4>getX</h4>
+	<div class="type"><p>Type: fn => f32 </p></div>
+	<div class="desc"><p>Getter for the x vvar.</p></div>
+
+	<pre><code>if theImage.getX() &gt; 100 {
+	//etc
+}</code></pre>
+
+</li>
+<li>
+	<h4>setY</h4>
+	<div class="type"><p>Type: fn(f32) </p></div>
+	<div class="desc"><p>Setter for the y vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 value: <p>The number in pixels for the y coordinate.</p></li>
+
+	</ul>
+	<pre><code>theImage.setY(0);</code></pre>
+
+</li>
+<li>
+	<h4>getY</h4>
+	<div class="type"><p>Type: fn => f32 </p></div>
+	<div class="desc"><p>Getter for the y vvar.</p></div>
+
+	<pre><code>var currentY: theImage.getY();</code></pre>
+
+</li>
+<li>
+	<h4>setZ</h4>
+	<div class="type"><p>Type: fn(f32) </p></div>
+	<div class="desc"><p>Setter for the z vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.f32 value: <p>The number in pixels for the z coordinate.</p></li>
+
+	</ul>
+	<pre><code>theImage.setZ(0);</code></pre>
+
+</li>
+<li>
+	<h4>getZ</h4>
+	<div class="type"><p>Type: fn => f32 </p></div>
+	<div class="desc"><p>Getter for the z vvar.</p></div>
+
+	<pre><code>if theImage.getZ() &gt; 0 {
+	//etc
+}</code></pre>
+
+</li>
+<li>
+	<h4>setVelocity</h4>
+	<div class="type"><p>Type: fn(@vel) </p></div>
+	<div class="desc"><p>Setter for the velocity vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.@vel value: <p>A vector describing the velocitiy of the image.</p></li>
+
+	</ul>
+	<pre><code>theImage.setVelocity(@vel {
+	x: 2;
+	y: 0;
+});</code></pre>
+
+</li>
+<li>
+	<h4>getVelocity</h4>
+	<div class="type"><p>Type: fn => @vel </p></div>
+	<div class="desc"><p>Value accessor for the velocity vvar.</p></div>
+
+	<pre><code>var vel: theImage.getVelocity();</code></pre>
+
+</li>
+<li>
+	<h4>getVelocityPointer</h4>
+	<div class="type"><p>Type: fn => ptr(@vel) </p></div>
+	<div class="desc"><p>Pointer accessor for the volicity vvar.</p></div>
+
+	<pre><code>var ptrToVel: theImage.getVelocityPointer();</code></pre>
+
+</li>
+<li>
+	<h4>setSrc</h4>
+	<div class="type"><p>Type: fn(ptr(@string)) </p></div>
+	<div class="desc"><p>Setter for the src vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.ptr(@string) value: <p>A string containing the path to the image inside the Resources folder.</p></li>
+
+	</ul>
+	<pre><code>theImage.setSrc(&quot;newImage.png&quot;);</code></pre>
+
+</li>
+<li>
+	<h4>getSrc</h4>
+	<div class="type"><p>Type: fn => ptr(i8) </p></div>
+	<div class="desc"><p>Getter for the src vvar.</p></div>
+
+	<pre><code>print theImage.getSrc();</code></pre>
+
+</li>
+<li>
+	<h4>load</h4>
+	<div class="type"><p>Type: fn(ptr(@string)) </p></div>
+	<div class="desc"><p>Loads a new image into the system, creating the new texture.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.ptr(@string) value: <p>A string containing the path to the image inside the Resources folder.</p></li>
+
+	</ul>
+
+</li>
+
+	</ul>
+</article>
+
+
+				<article class="code">
+					<h3>Go look at the code!</h3>
+					<p>To gain a better understanding of this class, it is recommended to look at the source code of the following file:</p>
+					<p><a href="https://github.com/veosotano/lil/blob/main/std/app.lil">https://github.com/veosotano/lil/blob/main/std/app.lil</a>
+				</article>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

@@ -265,18 +265,6 @@
             margin-bottom: 5px;
             text-decoration: none;
         }
-        .nav_list .see_all
-        {
-            display: block;
-            color: black;
-            padding-top: 30px;
-        }
-        
-        #specification > h3
-        {
-            padding-top: 30px;
-            font-size: 2em;
-        }
         
         #donate > div
         {
@@ -571,7 +559,6 @@
             <nav>
                 <a href="#tutorials">Tutorials</a>
                 <a href="#api">API</a>
-                <a href="#specification">Specification</a>
             </nav>
         </article>
         <article id="tutorials" class="nav_list">
@@ -634,43 +621,40 @@
                     <h4>Built in functions</h4>
                     <nav>
                         <a href="docs/fn_print.html">print</a>
-                        <a href="docs/fn_flag.html">flag</a>
-                        <a href="docs/fn_unflag.html">unflag</a>
-                        <a href="docs/fn_sel.html">sel</a>
+                        <a href="docs/fn_sel.html">$</a>
                         <a href="docs/fn_sizeOf.html">sizeOf</a>
                         <a href="docs/fn_pointerTo.html">pointerTo</a>
                         <a href="docs/fn_valueOf.html">valueOf</a>
                         <a href="docs/fn_set.html">set</a>
+                        <a href="docs/fn_msgSub.html">msgSub</a>
+                        <a href="docs/fn_msgSend.html">msgSend</a>
                     </nav>
-                    <a class="see_all" href="docs/functions/index.html">See all</a>
                 </section>
                 <section class="classes">
                     <h4>Built in classes</h4>
                     <nav>
-                        <a href="docs/@string.html">@string</a>
-                        <a href="docs/@array.html">@array</a>
-                        <a href="docs/@map.html">@map</a>
-                        <a href="docs/@box2d.html">@box2d</a>
-                        <a href="docs/@container.html">@container</a>
-                        <a href="docs/@image.html">@image</a>
-                        <a href="docs/@font.html">@font</a>
-                        <a href="docs/@rgb.html">@rgb</a>
+                        <a href="docs/class_string.html">@string</a>
+                        <a href="docs/class_array.html">@array</a>
+                        <a href="docs/class_element.html">@element</a>
+                        <a href="docs/class_container.html">@container</a>
+                        <a href="docs/class_image.html">@image</a>
+                        <a href="docs/class_sprite.html">@sprite</a>
+                        <a href="docs/class_shape2d.html">@shape2d</a>
+                        <a href="docs/class_rgb.html">@rgb</a>
                     </nav>
-                    <a class="see_all" href="docs/classes/index.html">See all</a>
                 </section>
                 <section class="data_types">
                     <h4>Data types</h4>
                     <nav>
-                        <a href="docs/data_types.html#integers">Integers</a>
-                        <a href="docs/data_types.html#floats">Floats</a>
-                        <a href="docs/data_types.html#static_arrays">Static arrays</a>
-                        <a href="docs/data_types.html#c_strings">C Strings</a>
-                        <a href="docs/data_types.html#booleans">Booleans</a>
-                        <a href="docs/data_types.html#pointers">Pointers</a>
-                        <a href="docs/data_types.html#multiple_types">Multiple types</a>
-                        <a href="docs/data_types.html#vector_types">Vector types</a>
+                        <a href="docs/index.html#integers">Integers</a>
+                        <a href="docs/index.html#floats">Floats</a>
+                        <a href="docs/index.html#static_arrays">Static arrays</a>
+                        <a href="docs/index.html#c_strings">C Strings</a>
+                        <a href="docs/index.html#booleans">Booleans</a>
+                        <a href="docs/index.html#pointers">Pointers</a>
+                        <a href="docs/index.html#multiple_types">Multiple types</a>
+                        <a href="docs/index.html#vector_types">Vector types</a>
                     </nav>
-                    <a class="see_all" href="docs/data_types.html">See all</a>
                 </section>
                 <section class="instructions">
                     <h4>Instructions</h4>
@@ -684,21 +668,13 @@
                         <a href="docs/instr_new.html">#new</a>
                         <a href="docs/instr_expand.html">#expand</a>
                     </nav>
-                    <a class="see_all" href="docs/functions/index.html">See all</a>
                 </section>
             </div>
         </article>
         
-        <article id="specification">
-            <h3>Specification</h3>
-            <p>The specification is a document that describes the LIL programming language as thoroughly as possible. You can
-read it clicking the following link:</p>
-            <p><a href="https://github.com/veosotano/lil/blob/main/lilspec.md" target="_blank">click here to go to the latest version of the specification</a>
-        </article>
-        
         <article id="code_example">
             <h3>Example LIL code:</h3>
-            <code>
+            <pre><code>
 <span class="instruction">#</span><span class="instruction">configure</span> <span class="punctuation">{</span>
     <span class="property_name">name</span><span class="punctuation">:</span> <span class="string">"Adventurer"</span><span class="punctuation">;</span>
     <span class="property_name">onUpdateFn</span><span class="punctuation">:</span> <span class="bool">true</span><span class="punctuation">;</span>
@@ -772,7 +748,7 @@ read it clicking the following link:</p>
         <span class="property_name">y</span><span class="punctuation">:</span> <span class="number_literal">100</span><span class="punctuation">;</span>
     <span class="punctuation">}</span>
 <span class="punctuation">}</span>
-            </code>
+            </code></pre>
         </article>
         <article id="features">
             <h2>Features</h2>

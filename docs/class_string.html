@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LIL is a language - Documentation</title>
+	<meta charset="UTF8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="../css/foundation.css" />
+</head>
+<body>
+	<header>
+		<div>
+			<h1>
+				<a href="../index.html">
+					<span class="title">LIL is a Language</span>
+					<span class="subtitle">Make games, nicely</span>
+				</a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Documentation</a></li>
+					<li><a href="../index.html#donate">Donate</a></li>
+					<li><a href="../index.html#contribute">Contribute</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div id="content">
+		<div>
+			<section id="sidebar">
+				<nav>
+					<h3>Classes</h3>
+					<ul>
+						<li><a href="class_app.html">@app</a></li>
+						<li><a href="class_element.html">@element</a></li>
+						<li><a href="class_container.html">@container</a></li>
+						<li><a href="class_image.html">@image</a></li>
+						<li><a href="class_sprite.html">@sprite</a></li>
+						<li><a href="class_shape2d.html">@shape2d</a></li>
+						<li><a href="class_rgb.html">@rgb</a></li>
+						<li><a href="class_string.html">@string</a></li>
+						<li><a href="class_array.html">@array</a></li>
+						<li><a href="class_input.html">@input</a></li>
+						<li><a href="class_mouseEvent.html">@mouseEvent</a></li>
+					</ul>
+					<!-- <h3>Functions</h3>
+					<ul>
+						<li><a href="msg.html">Global Messages</a></li>
+						<li><a href="fn_print.html">print</a></li>
+					</ul> -->
+				</nav>
+			</section>
+			<section id="doc">
+				<article class="intro">
+					<h2>@string</h2>
+					<div class="desc"><p>Strings are sequences of characters. They keep track of their length.</p></div>
+				</article>
+				<article class="example_code">
+					<h3>Example code</h3>
+					<pre><code>//use built in LIL strings
+var myStr: "Hello world";
+myStr.append(", have a great day!");
+
+//or do it manually
+var otherStr: @string { };
+otherStr.initialize(`this is a c style string`, 24);</code></pre>
+				</article>
+
+
+
+<article class="variables">
+	<h3>Member variables</h3>
+	<ul>
+		<li>
+	<h4>length</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>The amount of bytes that are used in the buffer for storing the string.</p></div>
+	<pre><code>print myStr.length;</code></pre>
+
+</li>
+<li>
+	<h4>buffer</h4>
+	<div class="type"><p>Type: var.[56 x i8]</p></div>
+	<div class="desc"><p>The internal storage space for characters, using the short string optimization. When the string is long, it contains a pointer to the buffer on the heap.</p></div>
+	<pre><code>return pointerTo(@self.buffer) =&gt; cstr;</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+<article class="functions">
+	<h3>Member functions</h3>
+	<ul>
+		<li>
+	<h4>construct</h4>
+	<div class="type"><p>Type: fn </p></div>
+	<div class="desc"><p>The constructor for this class. This method will be called automatically.</p></div>
+
+
+</li>
+<li>
+	<h4>destruct</h4>
+	<div class="type"><p>Type: fn </p></div>
+	<div class="desc"><p>The destructor for this class. This method will be called automatically.</p></div>
+
+
+</li>
+<li>
+	<h4>cstr</h4>
+	<div class="type"><p>Type: fn => ptr(i8) </p></div>
+	<div class="desc"><p>Returns a pointer to the characters as a C string, aka ptr(i8).</p></div>
+
+	<pre><code>var str: &quot;This is a LIL string&quot;;
+doStuffWithCStr(str.cstr());</code></pre>
+
+</li>
+<li>
+	<h4>append</h4>
+	<div class="type"><p>Type: fn(ptr(@string)) </p></div>
+	<div class="desc"><p>Add the content of the given string to the end of this one.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.ptr(@string) otherStr: <p>The other string, which will be added to this one.</p></li>
+
+	</ul>
+	<pre><code>var str: &quot;Hello there &quot;;
+str.add(&quot;my friend&quot;);
+print str; //prints Hello there my friend to stdout</code></pre>
+
+</li>
+<li>
+	<h4>initialize</h4>
+	<div class="type"><p>Type: fn(ptr(i8),i64) </p></div>
+	<div class="desc"><p>Sets up the string and adds the given string as content. This method is the one that is called by the compiler when creating built-in strings.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.ptr(i8) value: <p>A null terminated C-style string.</p></li>
+<li> var.i64 length: <p>The amount of bytes that are needed to store the full sequence of characters, but WITHOUT the null terminator. The method automatically adds 1 to the length when necessary.</p></li>
+
+	</ul>
+
+</li>
+
+	</ul>
+</article>
+
+
+				<article class="code">
+					<h3>Go look at the code!</h3>
+					<p>To gain a better understanding of this class, it is recommended to look at the source code of the following file:</p>
+					<p><a href="https://github.com/veosotano/lil/blob/main/std/string.lil">https://github.com/veosotano/lil/blob/main/std/string.lil</a>
+				</article>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

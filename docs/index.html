@@ -1,78 +1,557 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LIL is a language - Documentation</title>
-    <meta charset="UTF8" />
-    <link rel="stylesheet" href="../css/foundation.css" />
+	<title>LIL is a language - Documentation</title>
+	<meta charset="UTF8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="../css/foundation.css" />
 </head>
 <body>
-    <header>
-        <div>
-            <h1>
-                <a href="../index.html">
-                    <span class="title">LIL is a Language</span>
-                    <span class="subtitle">Make games, nicely</span>
-                </a>
-            </h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Documentation</a></li>
-                    <li><a href="../index.html#donate">Donate</a></li>
-                    <li><a href="../index.html#contribute">Contribute</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <div id="content">
-        <div>
-            <section id="sidebar">
-                <nav><ul>
-                    <li><a href="obj_app.html">@app</a></li>
-                    <li><a href="obj_container.html">@container</a></li>
-                    <li><a href="obj_image.html">@image</a></li>
-                    <li><a href="obj_sprite.html">@sprite</a></li>
-                    <li><a href="obj_rgb.html">@rgb</a></li>
-                    <li><a href="obj_string.html">@string</a></li>
-                    <li><a href="obj_array.html">@array</a></li>
-                    <li><a href="obj_input.html">@input</a></li>
-                    <li><a href="fn_print.html">print</a></li>
-                    <li><a href="design_philosophy.html">Design philosophy</a></li>
-                </ul></nav>
-            </section>
-            <section id="doc">
-                <article class="getting_started">
-                    <a href="../tutorials/download.html">
-                        <h2>Getting started</h2>
-                        <p>How to set up your computer to get started programming in LIL</p>
-                    </a>
-                </article>
-                <article class="overview">
-                    <a href="overview.html">
-                        <h2>Overview</h2>
-                        <p>An brief explanation of how the project is structured and how the language works.</p>
-                    </a>
-                </article>
-                <article class="faq">
-                    <a href="faq.html">
-                        <h2>FAQ</h2>
-                        <p>Frequently asqued questions about LIL and their answers.</p>
-                    </a>
-                </article>
-                <article class="releases">
-                    <a href="releases.html">
-                        <h2>Releases</h2>
-                        <p>Get the binaries that were released by this project.</p>
-                    </a>
-                </article>
-                <article class="spec">
-                    <a href="specification.html">
-                        <h2>Specification</h2>
-                        <p>The document that contains a description of how everything should work.</p>
-                    </a>
-                </article>
-            </section>
-        </div>
-    </div>
+	<header>
+		<div>
+			<h1>
+				<a href="../index.html">
+					<span class="title">LIL is a Language</span>
+					<span class="subtitle">Make games, nicely</span>
+				</a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Documentation</a></li>
+					<li><a href="../index.html#donate">Donate</a></li>
+					<li><a href="../index.html#contribute">Contribute</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div id="content">
+		<div>
+			<section id="sidebar">
+				<nav>
+					<h3>Objects</h3>
+					<ul>
+						<li><a href="class_app.html">@app</a></li>
+						<li><a href="class_element.html">@element</a></li>
+						<li><a href="class_container.html">@container</a></li>
+						<li><a href="class_image.html">@image</a></li>
+						<li><a href="class_sprite.html">@sprite</a></li>
+						<li><a href="class_shape2d.html">@shape2d</a></li>
+						<li><a href="class_rgb.html">@rgb</a></li>
+						<li><a href="class_string.html">@string</a></li>
+						<li><a href="class_array.html">@array</a></li>
+						<li><a href="class_input.html">@input</a></li>
+						<li><a href="class_mouseEvent.html">@mouseEvent</a></li>
+					</ul>
+					<!-- <h3>Functions</h3>
+					<ul>
+						<li><a href="msg.html">Global Messages</a></li>
+						<li><a href="fn_print.html">print</a></li>
+					</ul> -->
+				</nav>
+			</section>
+			<section id="doc">
+				<h2>Basic Values</h2>
+				<article class="numbers">
+					<h3>Numbers</h3>
+					<p>There are four kinds of integers: <code><span class="type">i8</span></code>, <code><span class="type">i16</span></code>, <code><span class="type">i32</span></code>, <code><span class="type">i64</span></code> and <code><span class="type">i128</span></code>, which are whole numbers, with no decimals. The <code>i</code> stands for integer
+					and the number is how many bits wide the value is.</p>
+					<pre><code>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">i8</span> <span class="var_name">foo</span><span class="punctuation">: </span><span class="number_literal">127</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="percentages">
+					<h3>Percentages:</h3>
+					<p>In certain places, you can express a value as a percentage. The type is written the same as the other number
+					types, but appending the percentage sign <code>%</code> at the end. The same sign needs to be at the end of a number literal
+					for it to be a percentage.</p>
+					<pre><code>
+<span class="property_name">width</span><span class="punctuation">: </span><span class="number_literal">25%</span><span class="punctuation">;</span>
+
+</code></pre>
+					<p>For example, storing a percentage in a var declaration where we force the type of the percentage to be a floating point, even though the literal value doesn't seem to be:</p>
+					<div><pre><code>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">f64%</span> <span class="var_name">myWidth</span><span class="punctuation">:</span> <span class="number_literal">100%</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="booleans">
+					<h3>Booleans:</h3>
+					<p>Booleans are expressed using the identifiers <code>true</code> and <code>false</code>, and represent the logical values of 1 and 0, respectively.</p>
+					<div><pre><code>
+<span class="var_declaration">var</span> <span class="var_name">enabled</span><span class="punctuation">:</span> <span class="bool_literal">true</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="strings">
+					<h3>Strings:</h3>
+					<p>You use single <code>''</code> or double <code>""</code> quotes around the text that is in your string.</p>
+					<pre><code>
+<span class="var_declaration">var</span> <span class="var_name">hello</span><span class="punctuation">:</span> <span class="string_literal">"Hello world"</span><span class="punctuation">;</span>
+
+</code></pre>
+					<p>Special symbols and escapes are written using a forward slash <code>\</code> in front of a special character or using the same quote type as the string.</p>
+					<p>There is no difference between using one kind of quotes or another, just use whatever needs less escaping, like <code>"Can't"</code> instead of <code>'Can\'t'</code>.</p>
+					<p>Here is a list of the characters and their meaning. It is not complete, look in further chapters for the whole list.</p>
+					<ul>
+						<li><code>\\</code> the backslash itself</li>
+						<li><code>\n</code> new line</li>
+						<li><code>\t</code> tab</li>
+						<li><code>\b</code> backspace</li>
+						<li><code>\0</code> C string termination character</li>
+					</ul>
+				</article>
+				<article class="string_functions">
+					<h3>String functions:</h3>
+					<p>Use the percent character <code>%</code> followed by an identifier to insert another value into the string you are writing.</p>
+					<pre><code>
+<span class="var_declaration">var</span> <span class="var_name">myText</span>: <span class="string_literal">"This is the content"</span><span class="punctuation">;</span>
+<span class="var_declaration">var</span> <span class="var_name">html</span>: <span class="string_literal">"&lt;div&gt;</span><span class="punctuation">%</span><span class="var_name">myText</span><span class="string_literal">&lt;/div&gt;"</span><span class="punctuation">;</span>
+
+</code></pre>
+					<p>If you need to write out
+					something more complex than a simple identifier, you can use curly braces and everything between them will be escaped. In this example, the app will print <code>Welcome Mr. Joe Lilamassa</code> to the standard output.</p>
+					<pre><code>
+<span class="var_declaration">var</span> <span class="var_name">name</span><span class="punctuation">:</span> <span class="string_literal">"Joe"</span>;
+<span class="var_declaration">var</span> <span class="var_name">surname</span><span class="punctuation">:</span> <span class="string_literal">"Lilamassa"</span><span class="punctuation">;</span>
+<span class="function_declaration">fn</span> <span class="var_name">makeName</span>(<span class="var_declaration">var</span> <span class="var_name">name</span><span class="punctuation">;</span> <span class="var_declaration">var</span> <span class="var_name">surname</span><span class="punctuation">) {</span>
+	<span class="flow_control_call">return</span> <span class="string_literal">"</span><span class="punctuation">%</span><span class="var_name">name</span><span class="string_literal"> </span><span class="punctuation">%</span><span class="var_name">surname</span><span class="string_literal">"</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+<span class="function_call">print</span> <span class="string_literal">"Welcome Mr. </span><span class="punctuation">%{ </span><span class="function_call">makeName</span><span class="punctuation">(</span><span class="var_name">name</span><span class="punctuation">, </span><span class="var_name">surname</span><span class="punctuation">) }</span><span class="string_literal">."</span>
+
+</code></pre>
+				</article>
+				<article class="c_strings">
+					<h3>C Strings</h3>
+					<p>Many times you have to interface with external code which expects old school character buffers like in the C language. To make things nicer,
+					there is the <code>cstr</code> type, which is a sequence of characters with <code>\0</code> at the end.</p>
+					<p>To write a literal c string in the source code, you can use the backtick symbols: <code>`contents of string`</code>.</p>
+					<p>Regular LIL strings have a <code>cstr</code> property that you can access which will give you the underlying character buffer.</p>
+					<pre><code>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">str</span> <span class="var_declaration">myString</span><span class="punctuation">:</span> <span class="string">"this is my LIL string"</span><span class="punctuation">;</span>
+<span class="function_call">functionWantingACString</span><span class="punctuation">(</span> <span class="var_name">myString</span><span class="punctuation">.</span><span class="property_name">cstr</span> <span class="punctuation">)</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="identifiers">
+					<h3>Identifiers:</h3>
+					<p>Identifiers are plain words, without any symbols, like <code>foo</code>, <code>myThing</code> or <code>_x3</code>, for example. They have to start with an underscore or a
+					letter. They represent names of things like variables, properties or classes.</p>
+					<p>There are some reserved words that can't be used as an identifier, such as:</p>
+					<ul>
+						<li>var</li>
+						<li>vvar</li>
+						<li>const</li>
+						<li>class</li>
+						<li>alias</li>
+						<li>type</li>
+						<li>true</li>
+						<li>false</li>
+						<li>if</li>
+						<li>else</li>
+						<li>switch</li>
+						<li>case</li>
+						<li>default</li>
+						<li>return</li>
+						<li>finally</li>
+						<li>for</li>
+						<li>loop</li>
+						<li>continue</li>
+						<li>repeat</li>
+						<li>break</li>
+						<li>null</li>
+					</ul>
+				</article>
+				<article class="comments">
+					<h3>Comments</h3>
+					<p>Comments are used to add information to the source code which is intended to be read only by the humans reading
+					the code. They start either with two forward slashes <code>//</code> or a forward slash and a star <code>/*</code>.</p>
+					<p>In the case of the double slash, we call them single line comments, because it is interpreted that everything
+					between the slashes and the end of the line is the content of the comment. For example:</p>
+					<pre><code>
+<span class="comment">//this is a comment and it ends here</span>
+
+</code></pre>
+					<p>On the other hand, if the slash and star is used, the source code that follows will be interpreted as a comment until the oposite symbol is found, a star and a slash: <code>*/</code>. For example:</p>
+					<pre><code>
+<span class="comment">/* this is the comment and
+it can span multiple
+lines until the end */</span>
+
+</code></pre>
+				</article>
+				<article class="expressions">
+					<h3>Expressions</h3>
+					<p>There are the basic math operations of sum, subtraction, multiplication and division, using the <code>+</code>, <code>-</code>, <code>*</code> and <code>/</code> symbols, respectively.
+					There is also the modulo operator <code>%</code>, which returns the remainder of a division.</p>
+					<pre><code>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">i64</span> <span class="var_declaration">myNum</span><span class="punctuation">:</span> <span class="number_literal">100</span> <span class="expression">+</span> <span class="number_literal">50</span><span class="punctuation">;</span>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">i64</span> <span class="var_declaration">myNum2</span><span class="punctuation">:</span> <span class="var_name">myNum</span> <span class="expression">*</span> <span class="number_literal">2</span><span class="punctuation">;</span>
+
+</code></pre>
+					<p>Expressions can be wrapped in parenthesis <code>(&lt;lhs&gt; &lt;sign&gt; &lt;rhs&gt;)</code>, in some cases to desambiguate, and others just to increase legibility.</p>
+				</article>
+				<article class="comparisons">
+					<h3>Comparisons</h3>
+					<p>Comparisons are expressions that return a boolean value containing wether the condition was met. There are the following types of comparisons:</p>
+					<ul>
+						<li>equal <code>=</code> or <code>==</code></li>
+						<li>bigger than <code>&gt;</code></li>
+						<li>bigger or equal <code>&gt;=</code></li>
+						<li>lower than <code>&lt;</code></li>
+						<li>lower or equal <code>&lt;=</code></li>
+					</ul>
+					<p>This is an example where comparisons are used together with if else statements:</p>
+					<pre><code>
+<span class="flow_control">if</span> <span class="punctuation">(</span><span class="var_name">myVar</span> <span class="expression">&lt;=</span> <span class="number_literal">100</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+	<span class="comment">//do something, smaller values</span>
+<span class="punctuation">}</span> <span class="flow_control">else</span> <span class="flow_control">if</span> <span class="punctuation">(</span><span class="punctuation">(</span><span class="var_name">myVar</span> <span class="expression">></span> <span class="number_literal">100</span><span class="punctuation">)</span> <span class="expression">AND</span> <span class="punctuation">(</span><span class="var_name">myVar</span> <span class="expression">&lt;=</span> <span class="number_literal">200</span><span class="punctuation">)</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+	<span class="comment">//do something else, mid range</span>
+<span class="punctuation">}</span> <span class="flow_control">else</span> <span class="punctuation">{</span>
+	<span class="comment">//highest values</span>
+<span class="punctuation">}</span>
+
+</code></pre>
+				</article>
+				<article class="expressions">
+					<h3>Unary expressions</h3>
+					<p>Often you want to directly apply the result of an expresssion to the same variable that is being read from. The word unary means "one operand", and the syntax merges expressions and assignments, all in one:</p>
+					<pre><code>
+<span class="var_name">theValue</span> <span class="unary_expression">+</span><span class="punctuation">:</span> <span class="number_literal">100</span><span class="punctuation">;</span>
+<span class="var_name">myVal</span> <span class="unary_expression">*</span><span class="punctuation">:</span> <span class="number_literal">2</span><span class="punctuation">;</span>
+<span class="var_name">foo</span> <span class="unary_expression">/</span><span class="punctuation">:</span> <span class="number_literal">5</span><span class="punctuation">;</span>
+
+</code></pre>
+				<p>If you come from C, it's easy to know how to write these, just substitute <code>=</code> by <code>:</code>.</p>
+				</article>
+				<article class="function_definitions">
+					<h3>Function definitions</h3>
+					<p>Functions are written using the <code>fn</code> keyword, followed by the name of the function and then optionally followed by variable declarations
+					wrapped in parenthesis <code>fn doStuff ( var myArg ) { &lt;statements...&gt;  }</code>, and then a list of commands inside a block delimited by curly braces <code>{ }</code>.</p>
+					<pre><code>
+<span class="function_declaration">fn</span> <span class="var_name">sumOfTwoNumbers</span> <span class="punctuation">(</span><span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">i32</span> <span class="var_declaration">numA</span><span class="punctuation">;</span> <span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">i32</span> <span class="var_declaration">numB</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+	<span class="flow_control_call">return</span> <span class="var_name">numA</span> <span class="expression">+</span> <span class="var_name">numB</span><span class="punctuation">;</span>
+<span class="punctuation">}</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="function_calls">
+					<h3>Function calls</h3>
+					<p>The functions that have been declared with a name are called using that name, followed by a pair of parentheses containing the arguments to be passed in to the function. The arguments themselves are separated by either commas or semicolons, and a trailing one is allowed.</p>
+					<p>When you write just the values, they need to be in the same order as in the declaration. When
+					written using assignments they can be in any order.</p>
+				</article>
+				<article clas="variable_declarations">
+					<h3>Variable declarations</h3>
+					<p>A variable declaration defines a a space in memory that can hold a value. You declare it with a name which you will use later to access its
+					content. It can be initialized with a value or left empty and assigned later.</p>
+					<p>To declare a variable you write the <code>var</code> keyword, followed by some whitespace, followed by the name of the variable. Then a colon <code>:</code> and a
+					value or a semicolon to denote the end.</p>
+					<pre><code>
+<span class="var_declaration">var</span> <span class="var_name">foo</span><span class="punctuation">:</span> <span class="number_literal">1</span><span class="punctuation">;</span>
+
+</code></pre>
+					<p>You can provide the type of the variable, so no guessing needs to take place, by writing a dot <code>.</code> after the <code>var</code> keyword.</p>
+					<pre><code>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">i8</span> <span class="var_declaration">foo</span><span class="punctuation">:</span> <span class="number_literal">1</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="assignments">
+					<h3>Assignments</h3>
+					<p>In LIL the assignment is written with a colon <code>:</code>, not an equal sign. In the following example we declare a variable named <code>myString</code>, then check
+					if <code>foo</code> is equal to 1 (a single <code>=</code> is a comparator) and  then assign a different string depending on the case. The compiler will use type
+					inference to know that <code>myString</code> is a variable of the correct type.</p>
+					<pre><code>
+<span class="var_declaration">var</span> <span class="var_declaration">myString</span><span class="punctuation">;</span>
+<span class="flow_control">if</span> <span class="var_name">foo</span> <span class="expression">=</span> <span class="number_literal">1</span> <span class="punctuation">{</span>
+	<span class="var_name">myString</span><span class="punctuation">:</span> <span class="string">"Hello world"</span><span class="punctuation">;</span>
+<span class="punctuation">}</span> <span class="flow_control">else</span> <span class="punctuation">{</span>
+	<span class="var_name">myString</span><span class="punctuation">:</span> <span class="string">"Foo was not one"</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+
+</code></pre>
+				</article>
+				<article class="classes">
+					<h3>Classes</h3>
+					<p>These are like a "blueprint" to make identical, but separate, copies of various other values put together as a unit, which we call object instances.</p>
+					<p>They are written using the <code>class</code> keyword, followed by whitespace, then the "object symbol" <code>@</code>, and then the name of the class. A semicolon
+					afterwards is allowed but not required. For example:</p>
+					<pre><code>
+<span class="class_declaration">class</span> <span class="object_type">@</span><span class="object_type">myClass</span> <span class="punctuation">{</span>
+	<span class="comment">// more stuff here</span>
+<span class="punctuation">}</span>
+
+</code></pre>
+					<h4>Member variables (fields)</h4>
+					<p>Since an object is a group of values, you have to specify each field as a variable declaration. For example, the following class contains an integer,
+					a floating point value and another object of class <code>@string</code>:</p>
+					<pre><code>
+<span class="class_declaration">class</span> <span class="object_type">@</span><span class="object_type">myClass2</span> <span class="punctuation">{</span>
+	<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">i64</span> <span class="var_declaration">id</span><span class="punctuation">;</span>
+	<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">f32</span> <span class="var_declaration">value</span><span class="punctuation">;</span>
+	<span class="var_declaration">var</span><span class="punctuation">.</span><span class="punctuation">@</span><span class="object_type">string</span> <span class="var_declaration">description</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+
+</code></pre>
+					<h4>Member functions (methods)</h4>
+					<p>When you put functions inside a class they are called methods. These are said to be "called on" an object instance. You typically use a value
+					path ending in a function call to invoke them. Inside the method the special selector object <code>@self</code> is available, which is a pointer to the
+					object instance itself.</p>
+					<p>The next example shows a class with a method which takes a boolean as argument and prints a message if <code>true</code> is passed:</p>
+					<pre><code>
+<span class="class_declaration">class</span> <span class="object_type">@</span><span class="object_type">myClass3</span> <span class="punctuation">{</span>
+	<span class="var_declaration">var</span><span class="punctuation">.</span><span class="object_type">@</span><span class="object_type">string</span> <span class="var_declaration">message</span><span class="punctuation">;</span>
+	<span class="function_declaration">fn</span> <span class="var_name">printMessage</span> <span class="punctuation">(</span><span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">bool</span> <span class="var_declaration">areYouSure</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+		<span class="flow_control">if</span> <span class="var_name">areYouSure</span> <span class="punctuation">{</span>
+			<span class="function_call">print</span> <span class="selector">@self</span><span class="punctuation">.</span><span class="property_name">message</span><span class="punctuation">;</span>
+		<span class="punctuation">}</span>
+	<span class="punctuation">}</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+
+<span class="var_declaration">var</span> <span class="var_name">myObjectInstance</span><span class="punctuation">:</span> <span class="object_definition">@</span><span class="object_definition">myClass3</span> <span class="punctuation">{</span> <span class="property_name">message</span><span class="punctuation">:</span> <span class="string">"This is the message"</span> <span class="punctuation">}</span><span class="punctuation">;</span>
+<span class="var_name">myObjectInstance</span><span class="punctuation">.</span><span class="property_name">printMessage</span><span class="punctuation">(</span><span class="bool">true</span><span class="punctuation">)</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="value_paths">
+					<h3>Value paths</h3>
+					<p>Value paths are used to access properties and methods of objects. They are written as a series of components of a larger unit:</p>
+					<p>First comes either a name or one of the special selector objects, like <code>@self</code> or <code>@root</code>.</p>
+					<p>If there are more components, you use a dot <code>.</code> as a separator and then the next piece. Whitespace between components and the dot is not
+					allowed.</p>
+					<p>For example:</p>
+					<pre><code>
+<span class="var_declaration">var</span> <span class="var_name">myString</span><span class="punctuation">:</span> <span class="string">"hello"</span><span class="punctuation">;</span>
+<span class="function_call">print</span> <span class="var_name">myString</span><span class="punctuation">.</span><span class="property_name">length</span><span class="punctuation">;</span>
+
+</code></pre>
+					<p>Here we are calling the <code>length</code> method of the <code>myString</code> object</p>
+				</article>
+				<article class="pointers">
+					<h3>Pointers</h3>
+					<p>Pointers are the representation of a memory address. You can address individual bytes and do additions and subtractions on them. They usually carry a type, which means that when you dereference a pointer (load its contents), the values at the memory location will be interpreted as being a value of such type. There is also the secial type <code>any</code> which can be implicitly converted to other pointer types when they are assigned.</p>
+					<pre><code>
+<span class="comment">//define the local variable we want to address</span>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">i64</span> <span class="var_name">myNumber</span><span class="punctuation">:</span> <span class="number_literal">123</span><span class="punctuation">;</span>
+
+<span class="comment">//take the address of myNumber</span>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">ptr</span><span class="punctuation">(</span><span class="type">i64</span><span class="punctuation">)</span> <span class="var_name">myPtr</span><span class="punctuation">:</span> <span class="function_call">pointerTo</span> <span class="var_name">myNumber</span><span class="punctuation">;</span>
+
+<span class="comment">//alter the value</span>
+<span class="function_call">doSomethingThatChangesTheNumber</span><span class="punctuation">(</span><span class="var_name">myPtr</span><span class="punctuation">)</span><span class="punctuation">;</span>
+
+<span class="comment">//prints the changed value</span>
+<span class="function_call">print</span> <span class="function_call">valueOf</span> <span class="var_name">myPtr</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="casts">
+					<h3>Casts</h3>
+					<p>To cast a value means converting it to another type. You use the fat arrow followed by the resulting type. Note that not all values can be converted.</p>
+					<pre><code>
+<span class="var_name">theValue</span> <span class="expression">=></span> <span class="type">type</span><span class="punctuation">;</span>
+
+<span class="punctuation">(</span><span class="function_call">getAge</span><span class="punctuation">(</span><span class="punctuation">)</span> <span class="expression">+</span> <span class="number_literal">20</span><span class="punctuation">)</span> <span class="expression">=></span> <span class="type">i32</span><span class="punctuation">;</span>
+
+</code></pre>
+					<p>When you cast an integer to a floating point number, for example, or when converting between bit widths, like going from <code>i32</code> to <code>i64</code>, the values are transformed. If you convert between pointer types, the loaded values will be interpreted as the new type directly, which is usually called type punning.</p>
+					<p>Some operations might be lossy. For example, if you convert an <code>f64</code> into a <code>f32</code> there is a loss of precision. If you were to convert back to a <code>f64</code> you could end up with a different value with less decimals.</p>
+					<pre><code>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">f64</span> <span class="var_declaration">myFloatVar</span><span class="punctuation">:</span> <span class="number_literal">100.435659888428</span><span class="punctuation">;</span>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">i32</span> <span class="var_declaration">myInteger</span><span class="punctuation">:</span> <span class="var_name">myFloatVar</span> <span class="expression">=></span> <span class="type">i32</span><span class="punctuation">;</span> <span class="comment">//100</span>
+<span class="function_call">doStuffWith32BitFloat</span><span class="punctuation">(</span> <span class="var_name">myFloatVar</span> <span class="expression">=></span> <span class="type">f32</span> <span class="punctuation">)</span>
+
+</code></pre>
+				</article>
+				<article class="multiple_types">
+					<h3>Multiple types</h3>
+					<p></p>
+					<pre><code>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">i32</span><span class="punctuation">|</span><span class="type">f32</span><span class="punctuation">|</span><span class="type">bool</span><span class="punctuation">|</span><span class="type">null</span> <span class="var_name">foo</span><span class="punctuation">:</span> <span class="bool">true</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="namespaces">
+					<h3>Namespaces</h3>
+					<p></p>
+					<pre><code>
+//variable namespace
+myVar, foo, printf
+//class namespace
+@root, @value, @array
+//snippet namespace
+#snippet mySnippet, #paste mySnippet
+
+</code></pre>
+				</article>
+				<article class="alias_types">
+					<h3>Alias, types and conversions</h3>
+					<p></p>
+					<pre><code>
+<span class="alias_declaration">alias</span> <span class="type">myPointerTy</span> <span class="punctuation">=></span> <span class="type">ptr</span><span class="punctuation">(</span><span class="type">ptr</span><span class="punctuation">(</span><span class="type">i8</span><span class="punctuation">)</span><span class="punctuation">)</span><span class="punctuation">;</span>
+<span class="type_declaration">type</span> <span class="type">m</span> <span class="punctuation">=></span> <span class="type">i64</span>
+
+<span class="conversion_declaration">conversion</span> <span class="var_declaration">var</span><span class="punctuation">.</span><span class="type">m</span> <span class="var_declaration">theValue</span> <span class="punctuation">=></span> <span class="type">mm</span> <span class="punctuation">{</span>
+	<span class="flow_control_call">return</span> <span class="var_name">theValue</span> <span class="expression">*</span> <span class="number_literal">1000</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+
+</code></pre>
+				</article>
+				<article class="arrays">
+					<h3>Arrays</h3>
+					<p></p>
+					<pre><code>
+<span class="var_declaration">var</span> <span class="var_declaration">myArr</span><span class="punctuation">:</span> <span class="number_literal">1</span><span class="punctuation">,</span> <span class="number_literal">2</span><span class="punctuation">,</span> <span class="number_literal">3</span><span class="punctuation">,</span> <span class="number_literal">4</span><span class="punctuation">,</span> <span class="number_literal">5</span><span class="punctuation">;</span>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="punctuation">[</span><span class="number_literal">3</span> <span class="punctuation">x</span> <span class="type">i32</span><span class="punctuation">]</span> <span class="var_declaration">foo</span><span class="punctuation">:</span> <span class="number_literal">100</span><span class="punctuation">,</span> <span class="number_literal">200</span><span class="punctuation">,</span> <span class="number_literal">300</span><span class="punctuation">;</span>
+<span class="var_declaration">var</span><span class="punctuation">.</span><span class="punctuation">@</span><span class="object_type">array</span><span class="punctuation">(</span><span class="type">f64</span><span class="punctuation">)</span> <span class="var_declaration">myArray</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="punctuation">;</span>
+<span class="var_declaration">var</span> <span class="var_declaration">bar</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="punctuation">]</span><span class="type">f32</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="flow_control">
+					<h3>Flow control</h3>
+					<p></p>
+					<pre><code>
+for
+if/else
+loop
+if cast
+switch
+type switch
+finally
+
+</code></pre>
+				</article>
+				<article class="flow_control_calls">
+					<h3>Flow control calls</h3>
+					<p></p>
+					<pre><code>
+return
+repeat
+continue
+break
+
+</code></pre>
+				</article>
+				<article class="root_object">
+					<h3>The @root object</h3>
+					<p></p>
+					<pre><code>
+<span class="selector">@root</span> <span class="punctuation">{</span>
+	<span class="property_name">width</span><span class="punctuation">:</span> <span class="number_literal">1440</span><span class="punctuation">;</span>
+	<span class="property_name">height</span><span class="punctuation">:</span> <span class="number_literal">900</span><span class="punctuation">;</span>
+	<span class="property_name">background</span><span class="punctuation">:</span> <span class="instruction">#</span><span class="instruction">0</span><span class="punctuation">;</span>
+<span class="punctuation">}</span>
+<span class="var_declaration">var</span> <span class="var_declaration">root</span><span class="punctuation">:</span> <span class="function_call">$</span><span class="punctuation">(</span><span class="selector">@root</span><span class="punctuation">)</span><span class="punctuation">;</span>
+
+</code></pre>
+				</article>
+				<article class="rules">
+					<h3>Rules</h3>
+					<p></p>
+					<pre><code>
+target {
+	property: value;
+}
+
+</code></pre>
+				</article>
+				<article class="selectors">
+					<h3>Selectors</h3>
+					<p></p>
+					<pre><code>
+name
+:filter
+::state
+combinators
+
+</code></pre>
+				</article>
+				<article class="filters">
+					<h3>Filters</h3>
+					<p></p>
+					<pre><code>
+foo:first { }
+bar:last { }
+baz:even { }
+
+</code></pre>
+				</article>
+				<article>
+					<h3>States</h3>
+					<p></p>
+					<pre><code>
+foo::enabled { }
+bar::target { }
+baz::whatever { }
+
+</code></pre>
+				</article>
+				<article class="combinators">
+					<h3>Combinators</h3>
+					<p></p>
+					<pre><code>
+foo + bar { }
+baz - zig { }
+zag = zug { }
+
+</code></pre>
+				</article>
+				<article>
+					<h3>Instructions</h3>
+					<p></p>
+					<pre><code>
+#new
+#0 / #FF / #CCC / #F0F1 / #FF00FF1 / #FF00FF05
+#arg
+#configure / #getConfig
+#import / #needs / #export
+#if
+#sippet / #paste
+#bug
+#expand
+#resource
+#gpu
+
+</code></pre>
+				</article>
+				<article class="snippets">
+					<h3>Snippets</h3>
+					<p></p>
+					<pre><code>
+#snippet myButton {
+	width: 200;
+	height: 400;
+	background: #C;
+}
+
+@root {
+	#new @container test {
+		#paste myButton;
+	}
+}
+
+</code></pre>
+				</article>
+				<article class="foreign_languages">
+					<h3>Foreign languages</h3>
+					<p></p>
+					<pre><code>
+&lt;llvm&gt;
+
+define i32 @foo(i32 %numA, i32 %numB) {
+entry:
+  %0 = add i32 %numB, %numA
+  ret i32 %0
+}
+
+&lt;/llvm&gt;
+
+</code></pre>
+				</article>
+			</section>
+		</div>
+	</div>
 </body>
 </html>

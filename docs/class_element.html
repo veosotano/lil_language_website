@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LIL is a language - Documentation</title>
+	<meta charset="UTF8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="../css/foundation.css" />
+</head>
+<body>
+	<header>
+		<div>
+			<h1>
+				<a href="../index.html">
+					<span class="title">LIL is a Language</span>
+					<span class="subtitle">Make games, nicely</span>
+				</a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Documentation</a></li>
+					<li><a href="../index.html#donate">Donate</a></li>
+					<li><a href="../index.html#contribute">Contribute</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div id="content">
+		<div>
+			<section id="sidebar">
+				<nav>
+					<h3>Classes</h3>
+					<ul>
+						<li><a href="class_app.html">@app</a></li>
+						<li><a href="class_element.html">@element</a></li>
+						<li><a href="class_container.html">@container</a></li>
+						<li><a href="class_image.html">@image</a></li>
+						<li><a href="class_sprite.html">@sprite</a></li>
+						<li><a href="class_shape2d.html">@shape2d</a></li>
+						<li><a href="class_rgb.html">@rgb</a></li>
+						<li><a href="class_string.html">@string</a></li>
+						<li><a href="class_array.html">@array</a></li>
+						<li><a href="class_input.html">@input</a></li>
+						<li><a href="class_mouseEvent.html">@mouseEvent</a></li>
+					</ul>
+					<!-- <h3>Functions</h3>
+					<ul>
+						<li><a href="msg.html">Global Messages</a></li>
+						<li><a href="fn_print.html">print</a></li>
+					</ul> -->
+				</nav>
+			</section>
+			<section id="doc">
+				<article class="intro">
+					<h2>@element</h2>
+					<div class="desc"><p>An element object is a handle to the primary data in the ECS system. It only contains the id of the entity as a field. The rest of the interface is defined trough vvars, which in turn access the storage on the app object.</p></div>
+				</article>
+				<article class="example_code">
+					<h3>Example code</h3>
+					<pre><code>var myElem: @element { id: 0 };
+var sel: myElem.selectable;
+print sel.typeId;</code></pre>
+				</article>
+
+
+<article class="virtual_variables">
+	<h3>Virtual variables</h3>
+	<ul>
+		<li>
+	<h4>selectable</h4>
+	<div class="type"><p>Type: vvar.@selectable</p></div>
+	<div class="desc"><p>The @selectable data object this element points to.</p></div>
+	<pre><code>var sel: theElem.selectable;</code></pre>
+
+</li>
+<li>
+	<h4>action</h4>
+	<div class="type"><p>Type: vvar.ptr(any)|null</p></div>
+	<div class="desc"><p>Returns the associated action pointer if it has one. Otherwise returns null.</p></div>
+	<pre><code>if theElem.action =&gt; ptr(any) {
+	var callback: theElem.action =&gt; ptr(fn);
+	callback();
+}</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+<article class="variables">
+	<h3>Member variables</h3>
+	<ul>
+		<li>
+	<h4>id</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>The unique identifier in the ECS system.</p></div>
+	<pre><code>return app.selectables[@self.id];</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+<article class="functions">
+	<h3>Member functions</h3>
+	<ul>
+		<li>
+	<h4>getSelectable</h4>
+	<div class="type"><p>Type: fn => @selectable </p></div>
+	<div class="desc"><p>Value accessor for the selectable vvar.</p></div>
+
+	<pre><code>var.@selectable sel: theElem.getSelectable();</code></pre>
+
+</li>
+<li>
+	<h4>getSelectablePointer</h4>
+	<div class="type"><p>Type: fn => ptr(@selectable) </p></div>
+	<div class="desc"><p>Pointer accessor for the selectable vvar.</p></div>
+
+	<pre><code>var.ptr(@selectable) sel: theElem.getSelectablePointer();</code></pre>
+
+</li>
+<li>
+	<h4>getName</h4>
+	<div class="type"><p>Type: fn => ptr(i8) </p></div>
+	<div class="desc"><p>Returns the name.</p></div>
+
+	<pre><code>var name: theElem.getName();</code></pre>
+
+</li>
+<li>
+	<h4>getAction</h4>
+	<div class="type"><p>Type: fn => ptr(any)|null </p></div>
+	<div class="desc"><p>Value accessor for the action vvar.</p></div>
+
+	<pre><code>var action: theElem.getAction();</code></pre>
+
+</li>
+<li>
+	<h4>setAction</h4>
+	<div class="type"><p>Type: fn(ptr(any)) </p></div>
+	<div class="desc"><p>Setter for the action vvar.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.ptr(any) ptr: <p>The pointer to the function to be called.</p></li>
+
+	</ul>
+
+</li>
+
+	</ul>
+</article>
+
+
+				<article class="code">
+					<h3>Go look at the code!</h3>
+					<p>To gain a better understanding of this class, it is recommended to look at the source code of the following file:</p>
+					<p><a href="https://github.com/veosotano/lil/blob/main/std/app.lil">https://github.com/veosotano/lil/blob/main/std/app.lil</a>
+				</article>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

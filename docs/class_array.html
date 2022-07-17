@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LIL is a language - Documentation</title>
+	<meta charset="UTF8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="../css/foundation.css" />
+</head>
+<body>
+	<header>
+		<div>
+			<h1>
+				<a href="../index.html">
+					<span class="title">LIL is a Language</span>
+					<span class="subtitle">Make games, nicely</span>
+				</a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Documentation</a></li>
+					<li><a href="../index.html#donate">Donate</a></li>
+					<li><a href="../index.html#contribute">Contribute</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div id="content">
+		<div>
+			<section id="sidebar">
+				<nav>
+					<h3>Classes</h3>
+					<ul>
+						<li><a href="class_app.html">@app</a></li>
+						<li><a href="class_element.html">@element</a></li>
+						<li><a href="class_container.html">@container</a></li>
+						<li><a href="class_image.html">@image</a></li>
+						<li><a href="class_sprite.html">@sprite</a></li>
+						<li><a href="class_shape2d.html">@shape2d</a></li>
+						<li><a href="class_rgb.html">@rgb</a></li>
+						<li><a href="class_string.html">@string</a></li>
+						<li><a href="class_array.html">@array</a></li>
+						<li><a href="class_input.html">@input</a></li>
+						<li><a href="class_mouseEvent.html">@mouseEvent</a></li>
+					</ul>
+					<!-- <h3>Functions</h3>
+					<ul>
+						<li><a href="msg.html">Global Messages</a></li>
+						<li><a href="fn_print.html">print</a></li>
+					</ul> -->
+				</nav>
+			</section>
+			<section id="doc">
+				<article class="intro">
+					<h2>@array</h2>
+					<div class="desc"><p>A dynamic array which automatically grows or shrinks as needed</p></div>
+				</article>
+				<article class="example_code">
+					<h3>Example code</h3>
+					<pre><code>//use built in array syntax
+var myArr: "apples", "oranges", "pears";
+for myArr {
+	print @value;
+}
+
+//or do it manually
+var.@array(i64) otherArr: [1, 2, 3, 4];
+otherArr.add(5);</code></pre>
+				</article>
+
+<article class="aliases">
+	<h3>Aliases</h3>
+	<ul>
+		<li>
+	<h4>sbuf</h4>
+	<div class="type"><p>sbuf</p></div>
+	<div class="desc"><p>The static buffer of values.</p></div>
+	<pre><code>//this will be expanded
+var.sbuf foo: [];
+//into this
+var.[#paste SMALL_BUFFER_SIZE x @subtype] foo: [];</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+
+<article class="variables">
+	<h3>Member variables</h3>
+	<ul>
+		<li>
+	<h4>buffer</h4>
+	<div class="type"><p>Type: var.[2 x @subtype]|ptr(@subtype)</p></div>
+	<div class="desc"><p>The space for some values or a pointer to the first value</p></div>
+	<pre><code>if @self.buffer =&gt; ptr(@subtype) {
+	return @self.buffer + index;
+}</code></pre>
+
+</li>
+<li>
+	<h4>size</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>How many values are currently in the array</p></div>
+	<pre><code>if index &lt; @self.size {
+	//etc
+}</code></pre>
+
+</li>
+<li>
+	<h4>capacity</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>How much space is allocated for values</p></div>
+	<pre><code>if @self.capacity &gt; @self.size {
+	//etc
+}</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+<article class="functions">
+	<h3>Member functions</h3>
+	<ul>
+		<li>
+	<h4>at</h4>
+	<div class="type"><p>Type: fn => ptr(@subtype)|null </p></div>
+	<div class="desc"><p>Returns a pointer to the value at the given index or null if not found</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 index: <p>The offset into the array.</p></li>
+
+	</ul>
+	<pre><code>print myArr.at(0);</code></pre>
+
+</li>
+<li>
+	<h4>value</h4>
+	<div class="type"><p>Type: fn => @subtype </p></div>
+	<div class="desc"><p>Returns the value at the given index</p><p>Warning! Might read out of bounds.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 index: <p>The offset into the array.</p></li>
+
+	</ul>
+	<pre><code>var lastValue: myArr.value(myArr.size - 1);</code></pre>
+
+</li>
+<li>
+	<h4>add</h4>
+	<div class="type"><p>Type: fn </p></div>
+	<div class="desc"><p>Appends a value at the end of the array, resizing the array if necessary</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.@subtype value: <p>The value to be inserted.</p></li>
+
+	</ul>
+	<pre><code>var.@array(i64) myArray: 1, 2, 3;
+myArray.add(123);
+myArray.add(888);</code></pre>
+
+</li>
+<li>
+	<h4>reserve</h4>
+	<div class="type"><p>Type: fn </p></div>
+	<div class="desc"><p>Use this method when you want to increase capacity for more elements ahead of time</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 newCapacity: <p>How many elements will fit.</p></li>
+
+	</ul>
+	<pre><code>myArr.reserve(1024);</code></pre>
+
+</li>
+<li>
+	<h4>initialize</h4>
+	<div class="type"><p>Type: fn => ptr(@subtype) </p></div>
+	<div class="desc"><p>The runtime calls this method to set up the array before copying elements into it</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 newCapacity: <p>how many elements will fit</p></li>
+
+	</ul>
+
+</li>
+
+	</ul>
+</article>
+
+
+				<article class="code">
+					<h3>Go look at the code!</h3>
+					<p>To gain a better understanding of this class, it is recommended to look at the source code of the following file:</p>
+					<p><a href="https://github.com/veosotano/lil/blob/main/std/array.lil">https://github.com/veosotano/lil/blob/main/std/array.lil</a>
+				</article>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

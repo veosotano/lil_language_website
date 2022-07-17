@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>LIL is a language - Documentation</title>
+	<meta charset="UTF8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<link rel="stylesheet" href="../css/foundation.css" />
+</head>
+<body>
+	<header>
+		<div>
+			<h1>
+				<a href="../index.html">
+					<span class="title">LIL is a Language</span>
+					<span class="subtitle">Make games, nicely</span>
+				</a>
+			</h1>
+			<nav>
+				<ul>
+					<li><a href="index.html">Documentation</a></li>
+					<li><a href="../index.html#donate">Donate</a></li>
+					<li><a href="../index.html#contribute">Contribute</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<div id="content">
+		<div>
+			<section id="sidebar">
+				<nav>
+					<h3>Classes</h3>
+					<ul>
+						<li><a href="class_app.html">@app</a></li>
+						<li><a href="class_element.html">@element</a></li>
+						<li><a href="class_container.html">@container</a></li>
+						<li><a href="class_image.html">@image</a></li>
+						<li><a href="class_sprite.html">@sprite</a></li>
+						<li><a href="class_shape2d.html">@shape2d</a></li>
+						<li><a href="class_rgb.html">@rgb</a></li>
+						<li><a href="class_string.html">@string</a></li>
+						<li><a href="class_array.html">@array</a></li>
+						<li><a href="class_input.html">@input</a></li>
+						<li><a href="class_mouseEvent.html">@mouseEvent</a></li>
+					</ul>
+					<!-- <h3>Functions</h3>
+					<ul>
+						<li><a href="msg.html">Global Messages</a></li>
+						<li><a href="fn_print.html">print</a></li>
+					</ul> -->
+				</nav>
+			</section>
+			<section id="doc">
+				<article class="intro">
+					<h2>@input</h2>
+					<div class="desc"><p>This class has storage for the states of the keys of the keyboard, the mouse and gamepads.</p></div>
+				</article>
+				<article class="example_code">
+					<h3>Example code</h3>
+					<pre><code>var gamepad: input.getGamepad();
+
+if input.getMousePressed() {
+	someObj.setX(input.getMouseX());
+	someObj.setY(input.getMouseY());
+}
+</code></pre>
+				</article>
+
+
+
+<article class="variables">
+	<h3>Member variables</h3>
+	<ul>
+		<li>
+	<h4>keyStates</h4>
+	<div class="type"><p>Type: var.[65536 x bool]</p></div>
+	<div class="desc"><p>Storage for the press status of each key on the keyboard.</p></div>
+	<pre><code>@self.keyStates[keyCode]: value;</code></pre>
+
+</li>
+<li>
+	<h4>gamepads</h4>
+	<div class="type"><p>Type: var.[8 x @gamepad]</p></div>
+	<div class="desc"><p>Storage for the states of the gamepads.</p></div>
+	<pre><code>@self.gamepads[gamepadId].buttonStates[buttonId]: value;</code></pre>
+
+</li>
+<li>
+	<h4>gamepadCount</h4>
+	<div class="type"><p>Type: var.i64</p></div>
+	<div class="desc"><p>The amount of gamepads that are currently in use.</p></div>
+	<pre><code>input.gamepadCount +: 1;</code></pre>
+
+</li>
+<li>
+	<h4>mouseStates</h4>
+	<div class="type"><p>Type: var.[8 x @mouseState]</p></div>
+	<div class="desc"><p>Storage for the button states and location of the mouse.</p></div>
+	<pre><code>input.mouseStates[buttonNumber]: @mouseState {
+	x: x;
+	y: y;
+	pressed: true;
+};</code></pre>
+
+</li>
+
+	</ul>
+</article>
+
+<article class="functions">
+	<h3>Member functions</h3>
+	<ul>
+		<li>
+	<h4>isKeyDown</h4>
+	<div class="type"><p>Type: fn(i16) => bool </p></div>
+	<div class="desc"><p>Returns wether the key with the given code is pressed.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i16 keyCode: <p>The number identifying which key.</p></li>
+
+	</ul>
+	<pre><code>if input.isKeyDown(KeyBoard.enter) {
+	print &quot;key down&quot;;
+}</code></pre>
+
+</li>
+<li>
+	<h4>setKeyDown</h4>
+	<div class="type"><p>Type: fn(i16,bool) </p></div>
+	<div class="desc"><p>Sets the press status of the key on the keyboard with the given keyCode.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i16 keyCode: <p>The number identifying which key.</p></li>
+<li> var.bool value: <p>Wether it is pressed or not.</p></li>
+
+	</ul>
+	<pre><code>inut.setKeyDown(keyCode, value);</code></pre>
+
+</li>
+<li>
+	<h4>getGamepad</h4>
+	<div class="type"><p>Type: fn(i64) => @gamepad </p></div>
+	<div class="desc"><p>Returns the gamepad object for the given gamepadId.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 gamepadId: <p>The number identifying the gamepad. Defaults to 0.</p></li>
+
+	</ul>
+	<pre><code>//get the first gamepad
+var gamepad: input.getGamepad();
+//get the second one
+var gamepad2: input.getGamepad(1);
+</code></pre>
+
+</li>
+<li>
+	<h4>isGamepadButtonDown</h4>
+	<div class="type"><p>Type: fn(i64,i64) => bool </p></div>
+	<div class="desc"><p>Returns the gamepad object for the given gamepadId.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 gamepadId: <p>The number identifying the gamepad.</p></li>
+<li> var.i64 buttonId: <p>The number identifying the button of the gamepad.</p></li>
+
+	</ul>
+	<pre><code>if input.isGamepadButtonDown(0, 3) {
+	//etc
+}</code></pre>
+
+</li>
+<li>
+	<h4>setGamepadButtonDown</h4>
+	<div class="type"><p>Type: fn(i64,i64,bool) </p></div>
+	<div class="desc"><p>Sets the press state of the button with given buttonId on the gamepad with given gamepadId.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 gamepadId: <p>The number identifying the gamepad.</p></li>
+<li> var.i64 buttonId: <p>The number identifying the button of the gamepad.</p></li>
+<li> var.bool value: <p>Wether or not it is pressed.</p></li>
+
+	</ul>
+	<pre><code>input.setGamepadButtonDown(gamepadId: 0; buttonId: 1; value: true);</code></pre>
+
+</li>
+<li>
+	<h4>setGamepadX</h4>
+	<div class="type"><p>Type: fn(i64,f64) </p></div>
+	<div class="desc"><p>Sets the position of the thumbstick in the horizontal axis for the gamepad with given gamepadId.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 gamepadId: <p>The number identifying the gamepad.</p></li>
+<li> var.f64 value: <p>The number representing the x amount. Valid values are between 0.0 and 1.0;</p></li>
+
+	</ul>
+	<pre><code>input.setGamepadX(0, 0.5);</code></pre>
+
+</li>
+<li>
+	<h4>setGamepadY</h4>
+	<div class="type"><p>Type: fn(i64,f64) </p></div>
+	<div class="desc"><p>Sets the position of the thumbstick in the vertical axis for the gamepad with given gamepadId.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 gamepadId: <p>The number identifying the gamepad.</p></li>
+<li> var.f64 value: <p>The number representing the y amount. Valid values are between 0.0 and 1.0;</p></li>
+
+	</ul>
+	<pre><code>input.setGamepadY(0, 1.0);</code></pre>
+
+</li>
+<li>
+	<h4>setGamepadX2</h4>
+	<div class="type"><p>Type: fn(i64,f64) </p></div>
+	<div class="desc"><p>Sets the position of the second thumbstick in the horizontal axis for the gamepad with given gamepadId.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 gamepadId: <p>The number identifying the gamepad.</p></li>
+<li> var.f64 value: <p>The number representing the x amount. Valid values are between 0.0 and 1.0;</p></li>
+
+	</ul>
+	<pre><code>input.setGamepadX2(0, 0);</code></pre>
+
+</li>
+<li>
+	<h4>setGamepadY2</h4>
+	<div class="type"><p>Type: fn(i64,f64) </p></div>
+	<div class="desc"><p>Sets the position of the second thumbstick in the vertical axis for the gamepad with given gamepadId.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 gamepadId: <p>The number identifying the gamepad.</p></li>
+<li> var.f64 value: <p>The number representing the y amount. Valid values are between 0.0 and 1.0;</p></li>
+
+	</ul>
+	<pre><code>input.setGamepadY2(0, 0);</code></pre>
+
+</li>
+<li>
+	<h4>getMouseX</h4>
+	<div class="type"><p>Type: fn(i64) => f64 </p></div>
+	<div class="desc"><p>Returns the location on the horizontal axis of the mouse cursor, in window coordinates.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 num: <p>The button number. Defaults to 0. The x and y coordinates of the mouse cursor are stored at index 0.</p></li>
+
+	</ul>
+	<pre><code>print input.getMouseX();</code></pre>
+
+</li>
+<li>
+	<h4>getMouseY</h4>
+	<div class="type"><p>Type: fn(i64) => f64 </p></div>
+	<div class="desc"><p>Returns the location on the vertical axis of the mouse cursor, in window coordinates.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 num: <p>The button number. Defaults to 0. The x and y coordinates of the mouse cursor are stored at index 0.</p></li>
+
+	</ul>
+	<pre><code>print input.getMouseY();</code></pre>
+
+</li>
+<li>
+	<h4>getMousePressed</h4>
+	<div class="type"><p>Type: fn(i64) => bool </p></div>
+	<div class="desc"><p>Returns the press state of the button with given numnber of the mouse.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 num: <p>The button number.</p></li>
+
+	</ul>
+	<pre><code>if getMousePressed(0) {
+	//etc
+}</code></pre>
+
+</li>
+<li>
+	<h4>setMousePosition</h4>
+	<div class="type"><p>Type: fn(i64,f64,f64) </p></div>
+	<div class="desc"><p>Sets the x and y coordinates for the mouse. Use window coordinates.</p></div>
+	<h5>Arguments</h5>
+	<ul>
+<li> var.i64 num: <p>The button number. Defaults to 0. The x and y coordinates of the mouse cursor are stored at index 0.</p></li>
+<li> var.f64 x: <p>The number representing the x coordinate.</p></li>
+<li> var.f64 y: <p>The number representing the y coordinate.</p></li>
+
+	</ul>
+
+</li>
+
+	</ul>
+</article>
+
+
+				<article class="code">
+					<h3>Go look at the code!</h3>
+					<p>To gain a better understanding of this class, it is recommended to look at the source code of the following file:</p>
+					<p><a href="https://github.com/veosotano/lil/blob/main/std/input.lil">https://github.com/veosotano/lil/blob/main/std/input.lil</a>
+				</article>
+			</section>
+		</div>
+	</div>
+</body>
+</html>
